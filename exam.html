@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Problems on Train</title>
+    <!-- <?php require "php/head.php"; ?> -->
+	<!-- <?php $ver="10-05-2020v1"; ?> -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css?<?php echo $ver; ?>"> 
+	<link rel="shortcut icon" href="logo/logo.png"/>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body{
+			background: url(background/imgpractice.jpg) fixed; 
+			background-size: cover;
+			background-color: white;	
+		}
+	</style>
+</head>
+<body>
+
+    <!-- <?php  require "php/nav.php"; ?> -->
+
+	<!-- Nav Bar -->
+	<script>
+		function myMenu(){
+			if (document.getElementById("nav-menu").style.width=="0px") {
+				document.getElementById("nav-menu").style.width="60%";
+			}
+			else{
+				document.getElementById("nav-menu").style.width="0px";
+			}		
+		}
+	</script>
+	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="index.html" style="font-weight: bold;"><img src="logo/logo.png" width="30" height="30" class="d-inline-block align-top"></i> PrepLearn</a>
+			<button class="navbar-toggler" type="button" onclick="myMenu()" onblur='document.getElementById("nav-menu").style.width="0px"'>
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse">
+			    <ul class="navbar-nav ml-auto">
+			    	<!-- <?php if (!isset($_SESSION["email"])) { ?> -->
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="signup.html"><i class="fas fa-user"></i> Sign Up</a>
+			      	</li>
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+			      	</li>
+			      	<!-- <?php }  -->
+					<!-- else{ ?>
+					<li class="nav-item dropdown">
+					    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?php echo $_SESSION["email"] ?>
+					    </a>
+					    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					        <a class="dropdown-item" href="home.php?p=1"><i class="fas fa-history"></i> Past Plans</a>
+					        <a class="dropdown-item" href="changepass.php"><i class="fas fa-user-cog"></i> Change Password</a>
+					        <a class="dropdown-item" href="php/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+					    </div>
+					</li>
+					<?php } ?> -->
+			    </ul>
+			</div>	  	
+		</div>
+	</nav>
+	<div class="nav-menu" id="nav-menu" style="width: 0px;">
+			    	
+		<!-- <?php if (!isset($_SESSION["email"])) { ?> -->
+
+		<a class="nav-link menu-icon" href="index.html">
+		    <div style="text-align: center;color: white;font-size: 30px;"><i class="fas fa-home"></i></div>
+			    HOME
+		</a>	      			
+		<a class="nav-link" href="signup.html"><i class="fas fa-user"></i> Sign Up</a>
+		<a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+			      
+		<!-- <?php } 
+		else{ ?>
+							
+		<a class="nav-link menu-icon" href="home.php" style="background-color: #243d51;">
+		    <div style="text-align: center;color: white;font-size: 30px;"><i class="fas fa-user"></i></div>
+		    <?php echo $_SESSION["email"] ?>
+		</a>
+		<a class="nav-link" href="home.php?p=1"><i class="fas fa-history"></i> Past Plans</a>
+		<a class="nav-link" href="changepass.php"><i class="fas fa-user-cog"></i> Change Password</a>
+		<a class="nav-link" href="php/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+		<?php } ?> -->
+			    	
+    </div>
+
+    <!-- Contents -->
+
+    <div class="container" style="margin-bottom: 80px;">
+        <div class="indextext" style="margin-top: 70px;margin-bottom: 50px;text-align: center;">
+            <u>Test Exam</u>
+        </div>
+        <div id="timer">
+            Timer
+        </div>
+		
+        <div class="questionbox">
+            <div class="question">
+                Q1. A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?
+            </div>
+            <div style="margin: 15px 40px 0 40px;">
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
+                    120 metres
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
+                    180 metres
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
+                    324 metres
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
+                    150 metres
+                </div>
+            </div>
+		</div>
+		<div class="questionbox">
+            <div class="question">
+                Q2. A train 125 m long passes a man, running at 5 km/hr in the same direction in which the train is going, in 10 seconds. The speed of the train is:
+            </div>
+            <div style="margin: 15px 40px 0 40px;">
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
+                    45 km/hr
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
+                    50 km/hr
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
+                    54 km/hr
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
+                    55 km/hr
+                </div>
+            </div>
+		</div>
+		<div class="questionbox">
+            <div class="question">
+                Q3. The length of the bridge, which a train 130 metres long and travelling at 45 km/hr can cross in 30 seconds, is:
+            </div>
+            <div style="margin: 15px 40px 0 40px;">
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
+                    200 m
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
+                    225 m
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
+                    245 m
+                </div>
+                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
+                    250 m
+                </div>
+            </div>
+		</div>
+		
+		
+    </div>
+
+    
+
+
+    <!-- <?php  require "php/footer.php"; ?> -->
+	<!-- footer -->
+	<footer>
+		Copyright <i class="far fa-copyright"></i> PrepLearn. All Rights Reserved
+    </footer>
+    
+    <script>
+        var m = 0;
+        var s = 5;
+        var mt = "";
+        var st = "";
+        var f=1;
+        var y=-70;
+        var timer = document.getElementById("timer");
+        var x = setInterval(function(){
+            if(s == 1 && m == 0){
+                clearInterval(x);
+                alert("Your time is over");
+                /*f=0;
+                var z = setInterval(function(){
+                    if(y==610){
+                    y=-70;
+                }
+                else{
+                    y=y+10;
+                }
+                timer.style.marginTop = y.toString()+"px";
+                },5); */       
+            }
+            if(s != 0 && f!=0){
+                s--;
+            }
+            else if(f!=0){
+                m--;
+                s=59;
+            }
+            if(m<10) mt="0";
+            if(s<10) st="0";
+            else st="";
+            timer.innerHTML = mt+m.toString()+":"+st+s.toString();
+        },1000);
+        // while(!(m == 0 && s == 0)){
+        //     if(s!=0){
+        //         setTimeout(function(){
+        //             s--;
+        //         }, 1000);
+        //     }
+        //     else{
+        //         setTimeout(function(){
+        //             m--;
+        //             s=59;
+        //         },1000);
+        //     }
+        //     timer.innerHTML = m.toString()+":"+s.toString();
+        // }
+    </script>
+    
+</body>
+
+</html>
