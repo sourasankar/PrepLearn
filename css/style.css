@@ -26,7 +26,7 @@
 }
 
 .bg-dark{
-	background-color: #f50057ed!important;
+	background-color: #f50057db!important;
 }
 
 
@@ -132,7 +132,7 @@ body{
 }
 
 footer{
-	background-color: #f50057ed;
+	background-color: #f50057db;
 	color: white;
 	font-weight: bold;
 	bottom: 0;
