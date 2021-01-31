@@ -29,6 +29,11 @@
 	background-color: #f50057db!important;
 }
 
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.5);
+    border-color: rgb(255 255 255 / 76%);
+}
+
 
 /*.form-control:focus {
     color: #495057;
@@ -58,25 +63,28 @@
 }
 
 @media (max-width: 575px){
-	.indextext{
+	
+	/*.indextext{
 		font-size: 30px;
 	}
 	.index{
 		padding: 50px 0;
-	}
+	}*/
 	
 }
 @media (min-width: 576px) {
-  	.indextext{
+	
+  	/*.indextext{
 		font-size: 30px;
 	}
 	.index{
 		padding: 50px 0;
-	}
+	}*/
 }
 
 @media (min-width: 768px) {
-	.indextext{
+	
+	/*.indextext{
 		font-size: 35px;
 	}
 	.index{
@@ -85,32 +93,32 @@
 	.nav-menu{
 		display: none;
 
-	}  	
+	}  	*/
 }
 @media (min-width: 992px){
-	.indextext{
+	/*.indextext{
 		font-size: 40px;
 	}
 	.index{
 		padding: 80px 0;
-	}	
+	}	*/
 	
 }
 @media (min-width: 1200px) { 
-	.indextext{
+	/*.indextext{
 		font-size: 45px;
 	}
 	.index{
 		padding: 100px 0;
-	}	
+	}*/	
 	
 }
 
-body{
+/*body{
 		background: url(../background/imglogged.jpg) fixed; 
 		background-size: cover;
 		background-color: white;	
-	}
+	}*/
 
 .index{
 	background-color: #00000099;
@@ -146,7 +154,7 @@ footer{
 	position: fixed;
 	right: 0;
 	top: 56px;
-	background-color: #343a40;
+	background-color: #bb0948db;
 	z-index: 1;
 	transition: 0.4s;
 	box-shadow: -5px -8px 5px 0px rgba(43, 41, 41, 0.64);
@@ -159,10 +167,10 @@ footer{
 	overflow: hidden;
   	white-space: nowrap;
   	text-overflow: ellipsis;
-  	border-bottom: 1px solid rgba(255,255,255,.1);
+  	/*border-bottom: 1px solid rgba(255,255,255,78%);*/
 }
 .nav-menu .nav-link:hover{
-	background-color: #4d545a;
+	background-color: #ab003c;
 }
 .menu-icon{
 	border-bottom: 1px solid rgba(255,255,255,.1);
