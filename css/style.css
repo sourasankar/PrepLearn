@@ -1,32 +1,32 @@
 .bg-pink{
-	background-color: #4caf50;
+	background-color: #651fff;
 }
 
 .border-pink{
-	border-color: #4caf50;
+	border-color: #651fff;
 }
 
 .btn-pink {
     color: #fff;
-    background-color: #4caf50;
-    border-color: #4caf50;
+    background-color: #651fff;
+    border-color: #651fff;
 }
 
 .btn-pink:hover {
     color: #fff;
-    background-color: #357a38;
-    border-color: #4caf50;
+    background-color: #4615b2;
+    border-color: #651fff;
 }
 
 .btn-pink:focus {
     color: #fff;
-    background-color: #357a38;
-    border-color: #4caf50;
-    box-shadow: 0 0 0 0.2rem rgb(76 175 80 / 47%)
+    background-color: #4615b2;
+    border-color: #651fff;
+    box-shadow: 0 0 0 0.2rem rgb(26 85 212 / 62%);
 }
 
 .bg-dark{
-	background-color: #4caf50db!important;
+	background-color: #651fffdb!important;
 }
 
 .navbar-dark .navbar-toggler {
@@ -50,7 +50,7 @@
 }
 
 .categorybox{
-	background-color: #4caf50ab;
+	background-color: #651fffab;
 	padding-bottom: 10px;
 	margin-bottom: 30px;
 	border-radius: 15px;
@@ -75,7 +75,7 @@
 }
 
 .questionbox{
-	background-color: #4caf50ab;
+	background-color: #651fffab;
 	width: 80%; 
 	margin: 0 auto 40px auto;
 	padding: 20px;
@@ -105,7 +105,7 @@
 #timer{
 	position: fixed;
 	margin-top: -70px;
-	background-color: #4caf50ab;
+	background-color: #651fffab;
 	padding: 10px;
 	border-radius: 15px;
 	font-weight: 700;
@@ -129,7 +129,7 @@
 
 .navbar-dark .navbar-nav .nav-link:hover{
 	color: white;
-	background-color: #357a38;
+	background-color: #4615b2;
 }
 
 @media (max-width: 575px){
@@ -201,7 +201,7 @@
 }
 
 footer{
-	background-color: #4caf50db;
+	background-color: #651fffdb;
 	color: white;
 	font-weight: bold;
 	bottom: 0;
@@ -215,7 +215,7 @@ footer{
 	position: fixed;
 	right: 0;
 	top: 56px;
-	background-color: #348e37e8;
+	background-color: #651fffdb;
 	z-index: 1;
 	transition: 0.4s;
 	box-shadow: -5px -8px 5px 0px rgba(43, 41, 41, 0.64);
@@ -231,7 +231,7 @@ footer{
   	border-bottom: 1px solid rgba(255,255,255,78%);
 }
 .nav-menu .nav-link:hover{
-	background-color: #357a38;
+	background-color: #4615b2;
 }
 .menu-icon{
 	border-bottom: 1px solid rgba(255,255,255,.1);
