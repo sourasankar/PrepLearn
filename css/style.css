@@ -1,32 +1,32 @@
 .bg-pink{
-	background-color: #d500f9;
+	background-color: #4caf50;
 }
 
 .border-pink{
-	border-color: #d500f9;
+	border-color: #4caf50;
 }
 
 .btn-pink {
     color: #fff;
-    background-color: #d500f9;
-    border-color: #d500f9;
+    background-color: #4caf50;
+    border-color: #4caf50;
 }
 
 .btn-pink:hover {
     color: #fff;
-    background-color: #9500ae;
-    border-color: #da33f7;
+    background-color: #357a38;
+    border-color: #4caf50;
 }
 
 .btn-pink:focus {
     color: #fff;
-    background-color: #9500ae;
-    border-color: #da33f7;
-    box-shadow: 0 0 0 0.2rem rgb(197 51 247 / 50%);
+    background-color: #357a38;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 0.2rem rgb(76 175 80 / 47%)
 }
 
 .bg-dark{
-	background-color: #d500f9db!important;
+	background-color: #4caf50db!important;
 }
 
 .navbar-dark .navbar-toggler {
@@ -50,7 +50,7 @@
 }
 
 .categorybox{
-	background-color: #d500f9ab;
+	background-color: #4caf50ab;
 	padding-bottom: 10px;
 	margin-bottom: 30px;
 	border-radius: 15px;
@@ -75,7 +75,7 @@
 }
 
 .questionbox{
-	background-color: #d500f9ab;
+	background-color: #4caf50ab;
 	width: 80%; 
 	margin: 0 auto 40px auto;
 	padding: 20px;
@@ -105,7 +105,7 @@
 #timer{
 	position: fixed;
 	margin-top: -70px;
-	background-color: #d500f9ab;
+	background-color: #4caf50ab;
 	padding: 10px;
 	border-radius: 15px;
 	font-weight: 700;
@@ -129,7 +129,7 @@
 
 .navbar-dark .navbar-nav .nav-link:hover{
 	color: white;
-	background-color: #9500ae;
+	background-color: #357a38;
 }
 
 @media (max-width: 575px){
@@ -201,7 +201,7 @@
 }
 
 footer{
-	background-color: #d500f9db;
+	background-color: #4caf50db;
 	color: white;
 	font-weight: bold;
 	bottom: 0;
@@ -215,7 +215,7 @@ footer{
 	position: fixed;
 	right: 0;
 	top: 56px;
-	background-color: #a70dc1de;
+	background-color: #348e37e8;
 	z-index: 1;
 	transition: 0.4s;
 	box-shadow: -5px -8px 5px 0px rgba(43, 41, 41, 0.64);
@@ -231,7 +231,7 @@ footer{
   	/*border-bottom: 1px solid rgba(255,255,255,78%);*/
 }
 .nav-menu .nav-link:hover{
-	background-color: #9500ae;
+	background-color: #357a38;
 }
 .menu-icon{
 	border-bottom: 1px solid rgba(255,255,255,.1);
