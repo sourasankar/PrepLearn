@@ -1,32 +1,32 @@
 .bg-pink{
-	background-color: #f50057;
+	background-color: #d500f9;
 }
 
 .border-pink{
-	border-color: #f50057;
+	border-color: #d500f9;
 }
 
 .btn-pink {
     color: #fff;
-    background-color: #f50057;
-    border-color: #f50057;
+    background-color: #d500f9;
+    border-color: #d500f9;
 }
 
 .btn-pink:hover {
     color: #fff;
-    background-color: #ab003c;
-    border-color: #f73378;
+    background-color: #9500ae;
+    border-color: #da33f7;
 }
 
 .btn-pink:focus {
     color: #fff;
-    background-color: #ab003c;
-    border-color: #f73378;
-    box-shadow: 0 0 0 0.2rem rgb(247 51 120 / 50%);
+    background-color: #9500ae;
+    border-color: #da33f7;
+    box-shadow: 0 0 0 0.2rem rgb(197 51 247 / 50%);
 }
 
 .bg-dark{
-	background-color: #f50057db!important;
+	background-color: #d500f9db!important;
 }
 
 .navbar-dark .navbar-toggler {
@@ -36,7 +36,7 @@
 
 .categoryitem{
 	color:black;
-	background-color: #fbced1;
+	background-color: #fff;
 	text-align: center;
 	font-weight: 600;
 	border-radius: 20px;
@@ -50,7 +50,7 @@
 }
 
 .categorybox{
-	background-color: #f50057ab;
+	background-color: #d500f9ab;
 	padding-bottom: 10px;
 	margin-bottom: 30px;
 	border-radius: 15px;
@@ -62,12 +62,20 @@
 	font-style: italic;
 }
 
+.indexbox{
+	background-color: rgb(255 255 255 / 75%);
+    margin-top: 100px;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0px 0px 9px 5px rgb(0 0 0 / 20%);
+}
+
 .indextext{
 	font-weight: 700;
 }
 
 .questionbox{
-	background-color: #f500576e;
+	background-color: #d500f9ab;
 	width: 80%; 
 	margin: 0 auto 40px auto;
 	padding: 20px;
@@ -85,7 +93,7 @@
     padding: 7px 20px;
     margin-bottom: 10px;
     border-radius: 10px;
-	background-color: #fbced1d6;
+	background-color: #ffffffd6;
 	box-shadow: 0px 4px 4px 0px rgb(0 0 0 / 24%);
 	cursor: pointer;
 }
@@ -97,7 +105,7 @@
 #timer{
 	position: fixed;
 	margin-top: -70px;
-	background-color: #f73378;
+	background-color: #d500f9ab;
 	padding: 10px;
 	border-radius: 15px;
 	font-weight: 700;
@@ -121,7 +129,7 @@
 
 .navbar-dark .navbar-nav .nav-link:hover{
 	color: white;
-	background-color: #ab003c;
+	background-color: #9500ae;
 }
 
 @media (max-width: 575px){
@@ -193,7 +201,7 @@
 }
 
 footer{
-	background-color: #f50057db;
+	background-color: #d500f9db;
 	color: white;
 	font-weight: bold;
 	bottom: 0;
@@ -207,7 +215,7 @@ footer{
 	position: fixed;
 	right: 0;
 	top: 56px;
-	background-color: #bb0948db;
+	background-color: #a70dc1de;
 	z-index: 1;
 	transition: 0.4s;
 	box-shadow: -5px -8px 5px 0px rgba(43, 41, 41, 0.64);
@@ -223,7 +231,7 @@ footer{
   	/*border-bottom: 1px solid rgba(255,255,255,78%);*/
 }
 .nav-menu .nav-link:hover{
-	background-color: #ab003c;
+	background-color: #9500ae;
 }
 .menu-icon{
 	border-bottom: 1px solid rgba(255,255,255,.1);
