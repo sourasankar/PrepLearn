@@ -1,3 +1,91 @@
+<?php
+
+	//session start
+	session_start();
+
+	// if(!$_SESSION["cookie_status"]){
+	// 	setcookie("test","test",time()+3600,"/");
+	// 	header("Location: checkcookie.php");
+	// 	die();
+	// }
+
+
+	//Checking if user is already logged in
+	if(isset($_SESSION["email"])){
+
+		//User already logged in redirects to home page
+		header("Location: index.php");
+		die();
+	}
+
+	//unset error msgs
+	$status=$emailError=$passError=null;
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+			//flag to check error
+			$error=0;
+			
+			//Data comes from login form
+			$email=strtolower($_POST["email"]);
+			$pass=$_POST["pass"];
+
+			//PHP Validations
+			if (!preg_match("/^\w+(\.\w+)*@\w+\.[A-Za-z]+$/",$email) || $email==""){
+				$emailError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^.{6,20}$/",$pass) || $pass==""){
+				$passError="is-invalid";
+	  			$error=1;
+			}
+
+			//If no error
+			if ($error==0) {
+
+				//connection to db
+				require "php/conn.php";
+
+				//encrypting password
+				$pass=md5($_POST["pass"]);
+
+				//getting password for that user
+				$sql = "SELECT password FROM credentials WHERE email='$email'";
+				$result = $conn->query($sql);
+				if($result->num_rows!=0){
+					$row = $result->fetch_assoc();
+
+					//if pass is matched
+					if($pass==$row["password"]){
+
+						//user now logged in
+						$_SESSION["email"]=$email;				
+						header("Location: index.php");
+						die();
+						
+					}
+					//if pass not matched
+					else{
+						$status="danger";
+						$msg='<i class="fas fa-exclamation-triangle"></i> Password Not Matched';
+					}
+				}
+
+				//if account not found
+				else{
+					$status="danger";
+					$msg='<i class="fas fa-exclamation-triangle"></i> Account Not Found';
+				}
+
+				//connection to db close
+				$conn->close();
+			}			
+
+	}
+
+?>
+
+
 <html>
 <head>
 	<title>Login</title>

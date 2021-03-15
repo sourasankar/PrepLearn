@@ -1,3 +1,95 @@
+<?php 
+	session_start();
+
+	//Checking if user is already logged in
+	if(isset($_SESSION["email"])){
+
+		//User already logged in redirects to home page
+		header("Location: index.php");
+		die();
+	}
+
+	//unset error msgs
+	$status=$fnameError=$lnameError=$phoneError=$emailError=$passError=null;
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+			//flag to check error
+			$error=0;
+
+			//Data comes from signup form
+			$fname=strtolower($_POST["fname"]);
+			$lname=strtolower($_POST["lname"]);
+			$phone=$_POST["phone"];
+			$email=strtolower($_POST["email"]);
+			$pass=$_POST["pass"];
+
+			//PHP Validations
+			if (!preg_match("/^[A-Za-z]+(\s[A-Za-z]+)*$/",$fname) || $fname==""){
+				$fnameError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^[A-Za-z]+$/",$lname) || $lname==""){
+				$lnameError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^\d{10}$/",$phone) || $phone==""){
+				$phoneError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^\w+(\.\w+)*@\w+\.[A-Za-z]+$/",$email) || $email==""){
+				$emailError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^.{6,20}$/",$pass) || $pass==""){
+				$passError="is-invalid";
+	  			$error=1;
+			}
+
+			//If no error
+			if ($error==0) {
+
+				//connection to db
+				require "php/conn.php";
+
+				//encrypting password
+				$pass=md5($_POST["pass"]);
+
+				//Check for email already exist
+				$sql = "SELECT * FROM credentials WHERE email='$email'";
+				$result = $conn->query($sql);				
+				if($result->num_rows!=0){
+					$flag=1;
+				}
+
+				//if account already exist
+				if(isset($flag)){
+					$flag=null;
+					$status="danger";
+					$msg='<i class="fas fa-exclamation-triangle"></i> The Account Already Exist';
+				}
+
+				//Iserting into database
+				else{
+					$sql = "INSERT INTO credentials(`first_name`,`last_name`,`email`,`password`,`phone`) VALUES ('$fname','$lname','$email','$pass','$phone')";
+					if($conn->query($sql)){
+						$status="success";
+						$msg='<i class="fas fa-check-circle"></i> Account Created Successfully. <a href="login.php">Login</a>';
+					}
+					else{
+						$status="danger";
+						$msg='<i class="fas fa-exclamation-triangle"></i> Account Creation Failed';
+					}
+				}
+
+				//connection to db close
+				$conn->close();				
+			}		
+	}
+
+?>
+
+
 <html>
 <head>
 	<title>Signup</title>
