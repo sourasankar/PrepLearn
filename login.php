@@ -16,7 +16,6 @@
 	
 	<?php  require "php/nav.php"; ?>
 
-
 	<!---------- LOGIN FORM---------->
 
 	<div class="container">
