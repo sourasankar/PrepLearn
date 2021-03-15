@@ -181,8 +181,13 @@
 	}*/
 
 .dropdown-menu{
-	background-color: #343a40;
+	background-color: #f50057;
 	border: none;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+	color: white;
+    text-decoration: none;
+    background-color: #ab003c;
 }
 
 .dropdown-item{
