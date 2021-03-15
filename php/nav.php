@@ -56,8 +56,7 @@
 			<div style="text-align: center;color: white;font-size: 30px;"><i class="fas fa-user"></i></div>
 			<?php echo $_SESSION["email"] ?>
 		</a>
-		<!-- <a class="nav-link" href="home.php?p=1"><i class="fas fa-history"></i> Past Plans</a>
-		<a class="nav-link" href="changepass.php"><i class="fas fa-user-cog"></i> Change Password</a> -->
+		<!-- <a class="nav-link" href="changepass.php"><i class="fas fa-user-cog"></i> Change Password</a> -->
 		<a class="nav-link" href="php/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
 		
 		<?php } ?> 
