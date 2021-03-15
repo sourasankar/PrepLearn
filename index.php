@@ -27,7 +27,7 @@
 		</div>
 		<div>
 			<button type="button" onclick="window.scrollBy(0, 200);" class="btn btn-pink" style="box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);">Practice Now <i class="fas fa-user-cog"></i></button>
-			<a style="margin-left: 10px; box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" href="exam.html" class="btn btn-pink">Take Exam <i class="fas fa-user-edit"></i></a>
+			<a style="margin-left: 10px; box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" href="exam.php" class="btn btn-pink">Take Exam <i class="fas fa-user-edit"></i></a>
 		</div>
 		<div style="margin: 70px 0">
 
@@ -38,7 +38,7 @@
 				<div>
 					<div class="row" style="margin: 0;">
 						<div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="practice.html" style="text-decoration: none;"><div class="categoryitem">
+							<a href="practice.php" style="text-decoration: none;"><div class="categoryitem">
 								Problems on Trains
 							</div></a>
 						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
