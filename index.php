@@ -32,14 +32,17 @@
 	<!-- Contents -->
 
 	<div class="container">
+
 		<div class="indextext" style="margin: 100px 0 40px 0;">
 			Make your dreams come true<br> 
 			with PrepLearn <img src="logo/logo.png" width="50">
 		</div>
+
 		<div>
 			<button type="button" onclick="window.scrollBy(0, 200);" class="btn btn-pink" style="box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);">Practice Now <i class="fas fa-user-cog"></i></button>
 			<a style="margin-left: 10px; box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" href="exam.php" class="btn btn-pink">Take Exam <i class="fas fa-user-edit"></i></a>
 		</div>
+
 		<div style="margin: 70px 0">
 			<?php 
 				while($row = $result->fetch_assoc()){
@@ -48,6 +51,7 @@
 				<div class="categorytext" style="padding-top: 10px;">
 					&nbsp; <u><?php echo $row["category_name"]; ?></u>
 				</div>
+				
 				<div>
 					<div class="row" style="margin: 0;">
 					<?php 
@@ -60,9 +64,12 @@
 								<?php echo $row2["sub_category_name"]; ?>
 							</div></a>
 						</div>
-					<?php } ?>				
+					<?php } ?>							
+					</div>
+				</div>
+			</div>				
 			<?php } ?>
-				
+
 		</div>
 		
 	</div>
