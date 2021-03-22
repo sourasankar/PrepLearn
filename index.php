@@ -60,7 +60,7 @@
 						while($row2 = $result2->fetch_assoc()){
 					?>
 						<div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="practice.php" style="text-decoration: none;"><div class="categoryitem">
+							<a href=<?php echo "practice.php?id=".$row2["sub_category_id"]; ?> style="text-decoration: none;"><div class="categoryitem">
 								<?php echo $row2["sub_category_name"]; ?>
 							</div></a>
 						</div>
@@ -68,7 +68,13 @@
 					</div>
 				</div>
 			</div>				
-			<?php } ?>
+			<?php
+			 	}
+
+				//connection to db close
+				$conn->close();
+				
+			?>
 
 		</div>
 		
