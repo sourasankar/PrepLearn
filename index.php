@@ -1,5 +1,12 @@
 <?php
     session_start();
+
+	//connection to db
+	require "php/conn.php";
+
+	$sql = "SELECT * FROM question_category";
+	$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -34,150 +41,27 @@
 			<a style="margin-left: 10px; box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" href="exam.php" class="btn btn-pink">Take Exam <i class="fas fa-user-edit"></i></a>
 		</div>
 		<div style="margin: 70px 0">
-
+			<?php 
+				while($row = $result->fetch_assoc()){
+			?>
 			<div class="categorybox">  
 				<div class="categorytext" style="padding-top: 10px;">
-					&nbsp; <u>Arithmetic Aptitude</u>
+					&nbsp; <u><?php echo $row["category_name"]; ?></u>
 				</div>
 				<div>
 					<div class="row" style="margin: 0;">
+					<?php 
+						$sql2 = "SELECT * FROM question_sub_category WHERE category_id=".$row["category_id"];
+						$result2 = $conn->query($sql2);
+						while($row2 = $result2->fetch_assoc()){
+					?>
 						<div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
 							<a href="practice.php" style="text-decoration: none;"><div class="categoryitem">
-								Problems on Trains
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Time and Distance
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Height and Distance
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Time and Work
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Simple Interest
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Compound Interest
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Profit and Loss
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">      
-								Partnership
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Percentage
+								<?php echo $row2["sub_category_name"]; ?>
 							</div></a>
 						</div>
-					</div>
-				</div>
-			</div>	
-
-
-			<div class="categorybox">  
-				<div class="categorytext" style="padding-top: 10px;">
-					&nbsp; <u>Verbal Ability</u>
-				</div>
-				<div>
-					<div class="row" style="margin: 0;">
-						<div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Spotting Errors
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Synonyms
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Antonyms
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Spellings
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Ordering of Words
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Sentence Improvement
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Ordering of Sentences
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Closet Test
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								One Word Substitutes
-							</div></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="categorybox">  
-				<div class="categorytext" style="padding-top: 10px;">
-					&nbsp; <u>Logical Reasoning</u>
-				</div>
-				<div>
-					<div class="row" style="margin: 0;">
-						<div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Number Series
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Verbal Classification
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Analogies
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Matching Definitions
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Verbal Reasoning
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Logical Games
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Statement and Assumption
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Statement and Conclusion
-							</div></a>
-						</div><div class="col-6 offset-0 col-md-4 offset-md-0 col-lg-3 offset-lg-0 col-xl-3 offset-xl-0">
-							<a href="#" style="text-decoration: none;"><div class="categoryitem">
-								Cause and Effect
-							</div></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
+					<?php } ?>				
+			<?php } ?>
 				
 		</div>
 		
