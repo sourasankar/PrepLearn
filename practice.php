@@ -1,5 +1,12 @@
 <?php
     session_start();
+
+    //connection to db
+	require "php/conn.php";
+    $sub_category_id = $_GET["id"];
+
+	$sql = "SELECT * FROM questions WHERE sub_category_id='$sub_category_id'";
+	$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -25,68 +32,46 @@
 
     <div class="container" style="margin-bottom: 80px;">
         <div class="indextext" style="margin-top: 70px;margin-bottom: 50px;text-align: center;">
-            <u>Problems on Trains</u>
+            <?php 
+                $sql2 = "SELECT * FROM question_sub_category WHERE sub_category_id='$sub_category_id'";
+                $result2 = $conn->query($sql2);
+                $row2 = $result2->fetch_assoc();
+            ?>
+            <u><?php echo $row2["sub_category_name"]; ?></u>
 		</div>
-		
+
+        <?php 
+            $i=1;
+			while($row = $result->fetch_assoc()){
+                $ans = $row["answer"];
+		?>		
         <div class="questionbox">
             <div class="question">
-                Q1. A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?
+                Q<?php echo $i; ?>. <?php echo $row["question"]; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
-                    120 metres
+                <div class="options" onclick='this.style.backgroundColor = "<?php  echo ($ans==1)?("#0bab0bba"):("#fd1f1fab");?>";'> 
+                    <?php echo $row["option1"]; ?>
                 </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    180 metres
+                <div class="options" onclick='this.style.backgroundColor = "<?php  echo ($ans==2)?("#0bab0bba"):("#fd1f1fab");?>";'>
+                    <?php echo $row["option2"]; ?>
                 </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    324 metres
+                <div class="options" onclick='this.style.backgroundColor = "<?php  echo ($ans==3)?("#0bab0bba"):("#fd1f1fab");?>";'>
+                    <?php echo $row["option3"]; ?>
                 </div>
-                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
-                    150 metres
+                <div class="options" onclick='this.style.backgroundColor = "<?php  echo ($ans==4)?("#0bab0bba"):("#fd1f1fab");?>";'>
+                    <?php echo $row["option4"]; ?>
                 </div>
             </div>
 		</div>
-		<div class="questionbox">
-            <div class="question">
-                Q2. A train 125 m long passes a man, running at 5 km/hr in the same direction in which the train is going, in 10 seconds. The speed of the train is:
-            </div>
-            <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
-                    45 km/hr
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
-                    50 km/hr
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    54 km/hr
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    55 km/hr
-                </div>
-            </div>
-		</div>
-		<div class="questionbox">
-            <div class="question">
-                Q3. The length of the bridge, which a train 130 metres long and travelling at 45 km/hr can cross in 30 seconds, is:
-            </div>
-            <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
-                    200 m
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    225 m
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
-                    245 m
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    250 m
-                </div>
-            </div>
-		</div>
-		
-		
+        <?php 
+                $i++;
+            }
+            
+            //connection to db close
+				$conn->close();
+        ?>	
+        	
     </div>
 
     
@@ -96,5 +81,4 @@
     <?php  require "php/footer.php"; ?>
     
 </body>
-
 </html>
