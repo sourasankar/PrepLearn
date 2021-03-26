@@ -109,6 +109,7 @@
             if(s == 1 && m == 0){
                 clearInterval(x);
                 alert("Your time is over");
+                window.location.replace("index.php");
                 /*f=0;
                 var z = setInterval(function(){
                     if(y==610){
