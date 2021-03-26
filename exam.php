@@ -99,7 +99,7 @@
     
     <script>
         var m = 0;
-        var s = 5;
+        var s = 10;
         var mt = "";
         var st = "";
         var f=1;
