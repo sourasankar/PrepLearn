@@ -65,7 +65,7 @@
                 <a href="javascript:void(0)" style="color: #212529;font-weight: bold;font-size: 15px;" onclick="answer(<?php echo $row['question_id']; ?>)">View Answer</a>
             </div>
             <div id="<?php echo $row["question_id"]; ?>" style="margin: 10px 0 0 40px;display: none;">                
-                <img src="solutions/<?php echo $row["question_id"]; ?>.png"/>
+                <img src="solutions/<?php echo $row["question_id"]; ?>.png">
             </div>
 		</div>
         <?php 
