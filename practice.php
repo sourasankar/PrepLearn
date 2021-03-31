@@ -63,6 +63,10 @@
                     <?php echo $row["option4"]; ?>
                 </div>
             </div>
+            <div style="margin-left: 40px;font-weight: bold;font-size: 15px;">
+                <a href="javascript:void(0)" style="color: #212529;">View Answer</a>
+                <img href="solutions/4.png">
+            </div>
 		</div>
         <?php 
                 $i++;
