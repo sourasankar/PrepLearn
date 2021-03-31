@@ -62,10 +62,10 @@
                 <div class="options" onclick='this.style.backgroundColor = "<?php  echo ($ans==4)?("#0bab0bba"):("#fd1f1fab");?>";'>
                     <?php echo $row["option4"]; ?>
                 </div>
+                <a href="javascript:void(0)" style="color: #212529;font-weight: bold;font-size: 15px;" onclick="answer(<?php echo $row['question_id']; ?>)">View Answer</a>
             </div>
-            <div style="margin-left: 40px;font-weight: bold;font-size: 15px;">
-                <a href="javascript:void(0)" style="color: #212529;">View Answer</a>
-                <img href="solutions/4.png">
+            <div id="<?php echo $row["question_id"]; ?>" style="margin: 10px 0 0 40px;display: none;">                
+                <img src="solutions/<?php echo $row["question_id"]; ?>.png"/>
             </div>
 		</div>
         <?php 
@@ -83,6 +83,17 @@
 	<!-- footer -->
 
     <?php  require "php/footer.php"; ?>
+
+    <script>
+        function answer(id){
+            if(document.getElementById(id).style.display=="none"){
+                document.getElementById(id).style.removeProperty("display");
+            }
+            else{
+                document.getElementById(id).style.setProperty("display","none");
+            }            
+        }
+    </script>
     
 </body>
 </html>
