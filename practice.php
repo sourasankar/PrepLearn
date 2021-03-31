@@ -59,16 +59,16 @@
                 Q<?php echo $j+1; ?>. <?php echo $question[$j]; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
-                <div id="<?php echo $questionId[$j]."option1"; ?>" class="options" onclick='answer("<?php echo $questionId[$j]."option1"; ?>",<?php echo $questionId[$j]; ?>,1)'> 
+                <div id="<?php echo $questionId[$j]."option1"; ?>" class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,1)'> 
                     <?php echo $option1[$j]; ?>
                 </div>
-                <div id="<?php echo $questionId[$j]."option2"; ?>" class="options" onclick='answer("<?php echo $questionId[$j]."option2"; ?>",<?php echo $questionId[$j]; ?>,2)'>
+                <div id="<?php echo $questionId[$j]."option2"; ?>" class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,2)'>
                     <?php echo $option2[$j]; ?>
                 </div>
-                <div id="<?php echo $questionId[$j]."option3"; ?>" class="options" onclick='answer("<?php echo $questionId[$j]."option3"; ?>",<?php echo $questionId[$j]; ?>,3)'>
+                <div id="<?php echo $questionId[$j]."option3"; ?>" class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,3)'>
                     <?php echo $option3[$j]; ?>
                 </div>
-                <div id="<?php echo $questionId[$j]."option4"; ?>" class="options" onclick='answer("<?php echo $questionId[$j]."option4"; ?>",<?php echo $questionId[$j]; ?>,4)'>
+                <div id="<?php echo $questionId[$j]."option4"; ?>" class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,4)'>
                     <?php echo $option4[$j]; ?>
                 </div>
                 <a href="javascript:void(0)" style="color: #212529;font-weight: bold;font-size: 15px;" onclick="view_answer(<?php echo $questionId[$j]; ?>)">View Answer</a>
@@ -123,12 +123,15 @@
             }            
         }
         function answer(optionid,id,option){
-            //if(answers[id]==option){
-                document.getElementById(optionid).style.setProperty("backgroundColor","#0bab0bba");
-            //}
-            //else{
-              //  document.getElementById(optionid).style.setProperty("backgroundColor","#fd1f1fab");
-           // }
+            if(flag[id]==0){
+                if(answers[id]==option){
+                    optionid.style.backgroundColor="#0bab0bba";
+                    flag[id]=1;
+                }
+                else{
+                    optionid.style.backgroundColor="#fd1f1fab";
+                }
+            }
         }
     </script>
     
