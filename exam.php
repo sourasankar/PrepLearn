@@ -1,11 +1,35 @@
 <?php
     session_start();
+
+    //If user not logged in
+    if(!isset($_SESSION["email"])){
+        header("Location: login.php");
+        die();
+    }
+
+    //connection to db
+	require "php/conn.php";
+    $sub_category_id = $_GET["id"];
+
+	$sql = "SELECT * FROM questions WHERE sub_category_id='$sub_category_id'";
+	$result = $conn->query($sql);
+    $count=0;
+    while($row = $result->fetch_assoc()){
+        $questionId[$count]=$row['question_id'];
+        $ans[$count]=$row["answer"];
+        $question[$count]=$row["question"];
+        $option1[$count]=$row["option1"];
+        $option2[$count]=$row["option2"];
+        $option3[$count]=$row["option3"];
+        $option4[$count]=$row["option4"];
+        $count++;
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Problems on Train</title>
+    <title>Exam</title>
     <?php require "php/head.php"; ?>
 	<style>
 		body{
@@ -25,71 +49,54 @@
 
     <div class="container" style="margin-bottom: 80px;">
         <div class="indextext" style="margin-top: 70px;margin-bottom: 50px;text-align: center;">
-            <u>Test Exam</u>
-        </div>
+            <?php 
+                $sql2 = "SELECT * FROM question_sub_category WHERE sub_category_id='$sub_category_id'";
+                $result2 = $conn->query($sql2);
+                $row2 = $result2->fetch_assoc();
+            ?>
+            <u><?php echo $row2["sub_category_name"]; ?></u>
+		</div>
         <div id="timer">
             Timer
         </div>
-		
+
+        <?php             
+			for($j=0;$j<$count;$j++){
+		?>		
         <div class="questionbox">
             <div class="question">
-                Q1. A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?
+                Q<?php echo $j+1; ?>. <?php echo $question[$j]; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
-                    120 metres
+                <div id="<?php echo $questionId[$j]."option1"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,1)'> 
+                    <?php echo $option1[$j]; ?>
                 </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    180 metres
+                <div id="<?php echo $questionId[$j]."option2"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,2)'>
+                    <?php echo $option2[$j]; ?>
                 </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    324 metres
+                <div id="<?php echo $questionId[$j]."option3"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,3)'>
+                    <?php echo $option3[$j]; ?>
                 </div>
-                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
-                    150 metres
+                <div id="<?php echo $questionId[$j]."option4"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,4)'>
+                    <?php echo $option4[$j]; ?>
                 </div>
             </div>
 		</div>
-		<div class="questionbox">
-            <div class="question">
-                Q2. A train 125 m long passes a man, running at 5 km/hr in the same direction in which the train is going, in 10 seconds. The speed of the train is:
-            </div>
-            <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
-                    45 km/hr
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
-                    50 km/hr
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    54 km/hr
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    55 km/hr
-                </div>
-            </div>
-		</div>
-		<div class="questionbox">
-            <div class="question">
-                Q3. The length of the bridge, which a train 130 metres long and travelling at 45 km/hr can cross in 30 seconds, is:
-            </div>
-            <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'> 
-                    200 m
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    225 m
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#0bab0bba";'>
-                    245 m
-                </div>
-                <div class="options" onclick='this.style.backgroundColor = "#fd1f1fab";'>
-                    250 m
-                </div>
-            </div>
-		</div>
-		
-		
+        <?php 
+                
+            }
+            
+            //connection to db close
+				$conn->close();
+        ?>	
+        <form id="exam_form" action="#" method="post">
+            <input type="hidden" id="answers" name="answers">
+            <input type="hidden" id="choices" name="choices">
+        </form>
+        <div class="questionbox" style="text-align: center;">
+            <button type="button" id="submit_button" class="btn btn-pink" style="width:50%;box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" onclick="submit()">Submit <i class="fas fa-arrow-circle-right"></i></button>
+        </div>
+        	
     </div>
 
 
@@ -108,18 +115,9 @@
         var x = setInterval(function(){
             if(s == 1 && m == 0){
                 clearInterval(x);
-                alert("Your time is over");
-                window.location.replace("index.php");
-                /*f=0;
-                var z = setInterval(function(){
-                    if(y==610){
-                    y=-70;
-                }
-                else{
-                    y=y+10;
-                }
-                timer.style.marginTop = y.toString()+"px";
-                },5); */       
+                alert("Your time is over. Answer will be submitted automatically. Click OK");
+                //when time is over
+                submit();
             }
             if(s != 0 && f!=0){
                 s--;
@@ -133,6 +131,45 @@
             else st="";
             timer.innerHTML = mt+m.toString()+":"+st+s.toString();
         },1000);
+
+        var answers = {
+            <?php 
+                for($j=0;$j<$count;$j++){
+                    echo "$questionId[$j]".":"."$ans[$j]";
+                    if($j!=$count-1){
+                        echo ",";
+                    }
+                }    
+            ?>
+        };
+
+        var choices = {
+            <?php 
+                for($j=0;$j<$count;$j++){
+                    echo "$questionId[$j]".":"."0";
+                    if($j!=$count-1){
+                        echo ",";
+                    }
+                }    
+            ?>
+        };
+
+        function mychoice(questionid,ans){
+            if(choices[questionid]!=0){
+                document.getElementById(questionid+"option"+choices[questionid].toString()).style.removeProperty("background-color");
+                document.getElementById(questionid+"option"+ans).style.backgroundColor="#ff6d00";
+            }
+            else{
+                document.getElementById(questionid+"option"+ans).style.backgroundColor="#ff6d00";
+            }
+            choices[questionid]=ans;
+        }
+
+        function submit(){
+            document.getElementById("answers").value=JSON.stringify(answers);
+            document.getElementById("choices").value=JSON.stringify(choices);
+            //document.getElementById("exam_form").submit();            
+        }
     </script>
     
 </body>

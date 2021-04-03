@@ -93,7 +93,7 @@
 
 <html>
 <head>
-	<title>Login</title>
+	<title>Change Password</title>
 	<?php require "php/head.php"; ?>
 	<style>
 		body{
