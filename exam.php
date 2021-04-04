@@ -89,7 +89,7 @@
             //connection to db close
 				$conn->close();
         ?>	
-        <form id="exam_form" action="#" method="post">
+        <form id="exam_form" action="result.php" method="post">
             <input type="hidden" id="answers" name="answers">
             <input type="hidden" id="choices" name="choices">
         </form>
@@ -168,7 +168,7 @@
         function submit(){
             document.getElementById("answers").value=JSON.stringify(answers);
             document.getElementById("choices").value=JSON.stringify(choices);
-            //document.getElementById("exam_form").submit();            
+            document.getElementById("exam_form").submit();            
         }
     </script>
     
