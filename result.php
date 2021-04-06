@@ -63,20 +63,30 @@
 
         <?php             
             $i=1;
+            $countCorrectAnswer=$countWrongAnswer=$countNotAttempted=0;
 			while($row = $result->fetch_assoc()){   
                 $option=array();
-                if($answers[$row['question_id']]==$choices[$row['question_id']] || $choices[$row['question_id']]==0){
-                    $op[$answers[$row['question_id']]]="background-color: rgba(11, 171, 11, 0.73);";
+                if($answers[$row['question_id']]==$choices[$row['question_id']]){
+                    $option[$answers[$row['question_id']]]="background-color: rgba(11, 171, 11, 0.73);";
+                    $status="<div style='color: #216100;'>( Correct Answer )</div>";
+                    $countCorrectAnswer++;
                 }  
                 elseif($answers[$row['question_id']]!=$choices[$row['question_id']] && $choices[$row['question_id']]!=0){
-                    $op[$answers[$row['question_id']]]="background-color: rgba(11, 171, 11, 0.73);";
-                    $op[$choices[$row['question_id']]]="background-color: rgba(253, 31, 31, 0.67);";
+                    $option[$answers[$row['question_id']]]="background-color: rgba(11, 171, 11, 0.73);";
+                    $option[$choices[$row['question_id']]]="background-color: rgba(253, 31, 31, 0.67);";
+                    $status="<div style='color: rgb(177 21 21 / 89%);'>( Wrong Answer )</div>";
+                    $countWrongAnswer++;
+                }
+                else{
+                    $option[$answers[$row['question_id']]]="background-color: rgba(11, 171, 11, 0.73);";
+                    $status="<div style='color: #ffeb3bfa;'>( Not Attempted )</div>";
+                    $countNotAttempted++;
                 }       
 
 		?>		
         <div class="questionbox">
             <div class="question">
-                Q<?php echo $i; ?>. <?php echo $row["question"]; ?> ( <?php echo $status; ?> )
+                Q<?php echo $i; ?>. <?php echo $row["question"]; ?><?php echo $status; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
                 <div class="options" style="<?php echo $option[1]; ?>"> 
