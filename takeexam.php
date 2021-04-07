@@ -9,12 +9,19 @@
         die();
     }
 
+	//connection to db
+	require "php/conn.php";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 					
 
-	}
+	}	
+
+	$sql = "SELECT * FROM question_category";
+	$result = $conn->query($sql);
+
+	
 
 ?>
 
@@ -43,40 +50,40 @@
 		<div class="row" style="margin: 100px 0;">
 			<div class="col-12">
 				<div class="card bg-light border-pink font-weight-bold shadow">
-  					<div class="card-header bg-pink text-center text-white">Take Exam</div>
+  					<div class="card-header bg-pink text-center text-white">Choose Sections to Take Exam</div>
   					<div class="card-body">
   						<form method="post" action="">
+							<?php 
+								$i=1;
+								while($row = $result->fetch_assoc()){
+							?>
+						  	<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="category<?php echo $i; ?>">
+								<label style="transform: translateY(-9px);font-size: 25px;" class="form-check-label" for="category<?php echo $i; ?>"><u><?php echo $row["category_name"]; ?></u></label>
+                        	</div>
 
                             <div class="row">
+							<?php 
+								$sql2 = "SELECT * FROM question_sub_category WHERE category_id=".$row["category_id"];
+								$result2 = $conn->query($sql2);
+								$j=1;
+								while($row2 = $result2->fetch_assoc()){
+							?>
                             
-                                <div class="col-6">
+                                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                        <input type="checkbox" class="form-check-input" id="Category<?php echo $i; ?>SubCategory<?php echo $j; ?>">
+                                        <label class="form-check-label" for="Category<?php echo $i; ?>SubCategory<?php echo $j; ?>"><?php echo $row2["sub_category_name"]; ?></label>
                                     </div>                          
-                                </div><div class="col-6">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>                          
-                                </div><div class="col-6">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>                          
-                                </div><div class="col-6">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>                          
-                                </div><div class="col-6">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>                          
-                                </div>                           
+                                </div>                       
                           
-                            </div>              
+                            </div> 
+							<?php 
+								$j++;
+								}
+								$i++;
+								}
+							?>             
 
 							<center style="margin-top: 30px;">
                                 <button type="submit" class="btn btn-pink "><i class="fas fa-sign-in-alt"></i> Start Test</button>
