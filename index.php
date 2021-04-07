@@ -40,7 +40,7 @@
 
 		<div>
 			<button type="button" onclick="window.scrollBy(0, 200);" class="btn btn-pink" style="box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);">Practice Now <i class="fas fa-user-cog"></i></button>
-			<a style="margin-left: 10px; box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" href="exam.php" class="btn btn-pink">Take Exam <i class="fas fa-user-edit"></i></a>
+			<a style="margin-left: 10px; box-shadow: 2px 3px 3px 0px rgb(0 0 0 / 34%);" href="takeexam.php" class="btn btn-pink">Take Exam <i class="fas fa-user-edit"></i></a>
 		</div>
 
 		<div style="margin: 70px 0">

@@ -3,13 +3,6 @@
 	//session start
 	session_start();
 
-	// if(!$_SESSION["cookie_status"]){
-	// 	setcookie("test","test",time()+3600,"/");
-	// 	header("Location: checkcookie.php");
-	// 	die();
-	// }
-
-
 	//Checking if user is already logged in
 	if(isset($_SESSION["email"])){
 

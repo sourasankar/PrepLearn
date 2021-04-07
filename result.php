@@ -11,6 +11,8 @@
         
         $answers = json_decode($_POST["answers"],true);
         $choices = json_decode($_POST["choices"],true);
+        $email = $_SESSION["email"];
+        $date = date("Y-m-d");
 
         //connection to db
 	    require "php/conn.php";
@@ -111,18 +113,25 @@
 
             $i++;                
             }
-            
+
+            $sql = "INSERT INTO exam_history(`email`,`date`,`correct`,`wrong`,`not_attempted`,`count_questions`) VALUES ('$email','$date','$countCorrectAnswer','$countWrongAnswer','$countNotAttempted','$i')";
+            $conn->query($sql);
+
             //connection to db close
 				$conn->close();
         ?>	
         	
-    </div>
-
-    
+    </div>    
 
 	<!-- footer -->
 
     <?php  require "php/footer.php"; ?>
+
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 
 </body>
 </html>
