@@ -113,7 +113,7 @@
 
             $i++;                
             }
-
+            $i--;
             $sql = "INSERT INTO exam_history(`email`,`date`,`correct`,`wrong`,`not_attempted`,`count_questions`) VALUES ('$email','$date','$countCorrectAnswer','$countWrongAnswer','$countNotAttempted','$i')";
             $conn->query($sql);
 

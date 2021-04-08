@@ -7,23 +7,41 @@
         die();
     }
 
-    //connection to db
-	require "php/conn.php";
-    $sub_category_id = $_GET["id"];
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-	$sql = "SELECT * FROM questions WHERE sub_category_id='$sub_category_id'";
-	$result = $conn->query($sql);
-    $count=0;
-    while($row = $result->fetch_assoc()){
-        $questionId[$count]=$row['question_id'];
-        $ans[$count]=$row["answer"];
-        $question[$count]=$row["question"];
-        $option1[$count]=$row["option1"];
-        $option2[$count]=$row["option2"];
-        $option3[$count]=$row["option3"];
-        $option4[$count]=$row["option4"];
-        $count++;
+        //connection to db
+        require "php/conn.php";
+        
+
+        $sql = "SELECT * FROM questions WHERE sub_category_id IN (";
+
+        foreach($_POST["subcategory"] as $sub_category_id){
+            $sql.="$sub_category_id,";
+        }
+
+        $sql=chop($sql,",");
+        $sql.=") ORDER BY RAND() LIMIT ".$_POST["questioncount"];
+
+        $result = $conn->query($sql);
+        $count=0;
+        while($row = $result->fetch_assoc()){
+            $questionId[$count]=$row['question_id'];
+            $ans[$count]=$row["answer"];
+            $question[$count]=$row["question"];
+            $option1[$count]=$row["option1"];
+            $option2[$count]=$row["option2"];
+            $option3[$count]=$row["option3"];
+            $option4[$count]=$row["option4"];
+            $count++;
+        }
+
     }
+    else{
+        header("Location: index.php");
+        die();
+    }
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -49,12 +67,7 @@
 
     <div class="container" style="margin-bottom: 80px;">
         <div class="indextext" style="margin-top: 70px;margin-bottom: 50px;text-align: center;">
-            <?php 
-                $sql2 = "SELECT * FROM question_sub_category WHERE sub_category_id='$sub_category_id'";
-                $result2 = $conn->query($sql2);
-                $row2 = $result2->fetch_assoc();
-            ?>
-            <u><?php echo $row2["sub_category_name"]; ?></u>
+            <u>Exam</u>
 		</div>
         <div id="timer">
             Timer
@@ -105,8 +118,8 @@
     <?php  require "php/footer.php"; ?>
     
     <script>
-        var m = 0;
-        var s = 10;
+        var m = <?php echo $_POST["questioncount"]; ?>;
+        var s = 0;
         var mt = "";
         var st = "";
         var f=1;
