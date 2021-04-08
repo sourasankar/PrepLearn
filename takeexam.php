@@ -57,8 +57,8 @@
 								$i=1;
 								while($row = $result->fetch_assoc()){
 							?>
-						  	<div class="form-check">
-								<input type="checkbox" class="form-check-input" id="category<?php echo $i; ?>">
+						  	<div class="form-check" style="margin:20px 0;">
+								<input type="checkbox" class="form-check-input" id="category<?php echo $i; ?>" onclick='document.getElementsByClassName("category<?php echo $i; ?>").checked=true;'>
 								<label style="transform: translateY(-9px);font-size: 25px;" class="form-check-label" for="category<?php echo $i; ?>"><u><?php echo $row["category_name"]; ?></u></label>
                         	</div>
 
@@ -72,15 +72,17 @@
                             
                                 <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="Category<?php echo $i; ?>SubCategory<?php echo $j; ?>">
+                                        <input type="checkbox" class="form-check-input category<?php echo $i; ?>" id="Category<?php echo $i; ?>SubCategory<?php echo $j; ?>">
                                         <label class="form-check-label" for="Category<?php echo $i; ?>SubCategory<?php echo $j; ?>"><?php echo $row2["sub_category_name"]; ?></label>
                                     </div>                          
-                                </div>                       
-                          
-                            </div> 
+                                </div> 
 							<?php 
 								$j++;
 								}
+							?>                      
+                          
+                            </div> 
+							<?php 
 								$i++;
 								}
 							?>             
