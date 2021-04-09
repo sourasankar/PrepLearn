@@ -25,7 +25,7 @@
         $result = $conn->query($sql);
         $count=0;
         while($row = $result->fetch_assoc()){
-            $questionId[$count]=$row['question_id'];
+            $questionId[$count]=$row["question_id"];
             $ans[$count]=$row["answer"];
             $question[$count]=$row["question"];
             $option1[$count]=$row["option1"];
