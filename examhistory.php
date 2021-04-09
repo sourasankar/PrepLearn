@@ -62,7 +62,7 @@
                                 ?>
                                 <tr>
                                     <th scope="row"><?php echo $i; ?></th>
-                                    <td><?php echo $row["date"]; ?></td>
+                                    <td><?php echo date("d-M-Y",strtotime($row["date"])); ?></td>
                                     <td><?php echo $row["correct"]; ?></td>
                                     <td><?php echo $row["wrong"]; ?></td>
                                     <td><?php echo $row["not_attempted"]; ?></td>
