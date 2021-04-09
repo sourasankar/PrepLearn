@@ -53,7 +53,7 @@
 		<?php } 
 		else{ ?>							
 							
-		<a class="nav-link menu-icon" href="home.php" style="background-color: #243d51;">
+		<a class="nav-link menu-icon" href="index.php" style="background-color: #bb0948db;">
 			<div style="text-align: center;color: white;font-size: 30px;"><i class="fas fa-user"></i></div>
 			<?php echo $_SESSION["email"] ?>
 		</a>
