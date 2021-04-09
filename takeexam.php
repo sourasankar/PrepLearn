@@ -12,16 +12,8 @@
 	//connection to db
 	require "php/conn.php";
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST"){
-
-					
-
-	}	
-
 	$sql = "SELECT * FROM question_category";
 	$result = $conn->query($sql);
-
-	
 
 ?>
 
@@ -44,7 +36,7 @@
 	
 	<?php  require "php/nav.php"; ?>
 
-	<!---------- LOGIN FORM---------->
+	<!---------- TAKE EXAM FORM ---------->
 
 	<div class="container">
 		<div class="row" style="margin: 100px 0;">
@@ -101,10 +93,10 @@
                             </center>
 						</form>    					
   					</div>
-  					<div class="card-footer">
+  					<!-- <div class="card-footer">
   						
   						
-  					</div>
+  					</div> -->
 				</div>
 			</div>			
 		</div>		
@@ -144,6 +136,11 @@
 		}
 
 	</script>
+
+	<?php 
+		//connection to db close
+		$conn->close();
+	?>
 
 </body>
 </html>

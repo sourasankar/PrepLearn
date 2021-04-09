@@ -99,7 +99,7 @@
                 
             }
             
-            //connection to db close
+                //connection to db close
 				$conn->close();
         ?>	
         <form id="exam_form" action="result.php" method="post">
