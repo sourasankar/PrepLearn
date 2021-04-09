@@ -77,6 +77,22 @@
 			?>
 
 		</div>
+		<div id="chat-icon" style="width: 100px;
+					height: 100px;
+					bottom: 0;
+					font-size: 50px;
+					margin: 0 70px 70px 0;
+					padding: 10px;
+					right: 0;
+					text-align: center;
+					position: fixed;
+					background-color: #f50057ab;
+					border-radius: 50%;
+					color:white;">
+
+				<i class="fas fa-comments"></i>
+				 
+		</div>
 		
 	</div>
 
