@@ -23,7 +23,7 @@
 	</style>
 	<link rel="stylesheet" type="text/css" href="css/jquery.convform.css">
 	<script type="text/javascript" src="js/jquery.convform.js"></script>
-	<!-- <script type="text/javascript" src="js/custom.js"></script> -->
+	<script type="text/javascript" src="js/custom.js"></script>
 </head>
 <body>
 
