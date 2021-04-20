@@ -20,8 +20,44 @@
 			background-size: cover;
 			background-color: white;	
 		}
+		/*ChatBot*/
+		.chat_icon{
+			position: fixed;
+			bottom: 0;
+			right: 30px;
+			z-index: 1000;
+			padding: 0;
+			font-size: 80px;
+			color: #fff;
+			cursor: pointer;
+		}
+		.chat_box{
+			width: 400px;
+			height: 80vh;
+			position: fixed;
+			bottom: 100px;
+			right: 30px;
+			background:#dedede;
+			z-index: 1000;
+			transition: all 0.3s ease-out;
+			transform: scaleY(0);
+		}
+		.chat_box.active{
+			transform: scaleY(1);
+		}
+		#messages{
+			padding: 20px;
+		}
+		.my-conv-form-wrapper textarea{
+			height: 30px;
+			overflow: hidden;
+			resize: none;
+		}
+		.hidden{
+			display: none !important;
+		}
 	</style>
-	<link rel="stylesheet" type="text/css" href="css/jquery.convform.css">
+	<link rel="stylesheet" href="css/jquery.convform.css">
 	<script type="text/javascript" src="js/jquery.convform.js"></script>
 	<script type="text/javascript" src="js/custom.js"></script>
 </head>
@@ -91,7 +127,8 @@
 		</form>
 		</div>
 	</div>
-	<!-- ChatBot end -->
+
+	<!-- chat bot end -->
 
 
 	<!-- Contents -->
@@ -142,7 +179,7 @@
 			?>
 
 		</div>
-		<div id="chat-icon" style="width: 100px;
+		<!-- <div id="chat_icon" style="width: 100px;
 					height: 100px;
 					bottom: 0;
 					font-size: 50px;
@@ -157,7 +194,7 @@
 
 				<i class="fas fa-comments"></i>
 				 
-		</div>
+		</div> -->
 		
 	</div>
 
