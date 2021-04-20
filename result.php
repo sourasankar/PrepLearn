@@ -91,16 +91,16 @@
                 Q<?php echo $i; ?>. <?php echo $row["question"]; ?><?php echo $status; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
-                <div class="options" style="<?php echo $option[1]; ?>"> 
+                <div class="questionoptions" style="<?php echo $option[1]; ?>"> 
                     <?php echo $row["option1"]; ?>
                 </div>
-                <div class="options" style="<?php echo $option[2]; ?>">
+                <div class="questionoptions" style="<?php echo $option[2]; ?>">
                     <?php echo $row["option2"]; ?>
                 </div>
-                <div class="options" style="<?php echo $option[3]; ?>">
+                <div class="questionoptions" style="<?php echo $option[3]; ?>">
                     <?php echo $row["option3"]; ?>
                 </div>
-                <div class="options" style="<?php echo $option[4]; ?>">
+                <div class="questionoptions" style="<?php echo $option[4]; ?>">
                     <?php echo $row["option4"]; ?>
                 </div>
                 <div style="color: #212529;font-weight: bold;font-size: 15px;">Solution Explanation:</div>

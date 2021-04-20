@@ -59,16 +59,16 @@
                 Q<?php echo $j+1; ?>. <?php echo $question[$j]; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
-                <div class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,1)'> 
+                <div class="questionoptions" onclick='answer(this,<?php echo $questionId[$j]; ?>,1)'> 
                     <?php echo $option1[$j]; ?>
                 </div>
-                <div class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,2)'>
+                <div class="questionoptions" onclick='answer(this,<?php echo $questionId[$j]; ?>,2)'>
                     <?php echo $option2[$j]; ?>
                 </div>
-                <div class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,3)'>
+                <div class="questionoptions" onclick='answer(this,<?php echo $questionId[$j]; ?>,3)'>
                     <?php echo $option3[$j]; ?>
                 </div>
-                <div class="options" onclick='answer(this,<?php echo $questionId[$j]; ?>,4)'>
+                <div class="questionoptions" onclick='answer(this,<?php echo $questionId[$j]; ?>,4)'>
                     <?php echo $option4[$j]; ?>
                 </div>
                 <a href="javascript:void(0)" style="color: #212529;font-weight: bold;font-size: 15px;" onclick="view_answer(<?php echo $questionId[$j]; ?>)">View Answer</a>

@@ -80,7 +80,7 @@
 	font-weight: 700;
 }
 
-.options{
+.questionoptions{
 	font-weight: 700;
     padding: 7px 20px;
     margin-bottom: 10px;
@@ -90,7 +90,7 @@
 	cursor: pointer;
 }
 
-.options:hover{
+.questionoptions:hover{
 	box-shadow: 0px 8px 4px 0px rgb(0 0 0 / 24%);;
 }
 

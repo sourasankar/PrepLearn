@@ -81,16 +81,16 @@
                 Q<?php echo $j+1; ?>. <?php echo $question[$j]; ?>
             </div>
             <div style="margin: 15px 40px 0 40px;">
-                <div id="<?php echo $questionId[$j]."option1"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,1)'> 
+                <div id="<?php echo $questionId[$j]."option1"; ?>" class="questionoptions" onclick='mychoice(<?php echo $questionId[$j]; ?>,1)'> 
                     <?php echo $option1[$j]; ?>
                 </div>
-                <div id="<?php echo $questionId[$j]."option2"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,2)'>
+                <div id="<?php echo $questionId[$j]."option2"; ?>" class="questionoptions" onclick='mychoice(<?php echo $questionId[$j]; ?>,2)'>
                     <?php echo $option2[$j]; ?>
                 </div>
-                <div id="<?php echo $questionId[$j]."option3"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,3)'>
+                <div id="<?php echo $questionId[$j]."option3"; ?>" class="questionoptions" onclick='mychoice(<?php echo $questionId[$j]; ?>,3)'>
                     <?php echo $option3[$j]; ?>
                 </div>
-                <div id="<?php echo $questionId[$j]."option4"; ?>" class="options" onclick='mychoice(<?php echo $questionId[$j]; ?>,4)'>
+                <div id="<?php echo $questionId[$j]."option4"; ?>" class="questionoptions" onclick='mychoice(<?php echo $questionId[$j]; ?>,4)'>
                     <?php echo $option4[$j]; ?>
                 </div>
             </div>
