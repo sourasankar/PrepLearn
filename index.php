@@ -21,12 +21,77 @@
 			background-color: white;	
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" href="css/jquery.convform.css">
+	<script type="text/javascript" src="js/jquery.convform.js"></script>
+	<!-- <script type="text/javascript" src="js/custom.js"></script> -->
 </head>
 <body>
 
 	<!-- Nav Bar -->
 
 	<?php  require "php/nav.php"; ?> 
+
+	<!-- ChatBot -->
+	<div class="chat_icon">
+		<i class="fa fa-comments" aria-hidden="true"></i>
+	</div>
+
+	<div class="chat_box">
+		<div class="my-conv-form-wrapper">
+			<form action="index.html" method="GET" class="hidden">
+
+
+			<input type="text" data-conv-question="Hello!!" data-no-answer="true"> 
+
+		<select data-callback="storeState" data-conv-question="How can I help you ??" name="category">
+			<option value="forgotPassword">Forget Password</option>
+			<option value="howToAccessPractice">How to access Practice</option>
+			<option value="howToAccessExam">How to access Exam</option>
+			<option value="contactUs">Contact Us</option>
+			<option value="aboutUs">About Us</option>
+		</select>
+
+		<div data-conv-fork="category">
+			<div data-conv-case="forgotPassword">
+				<input type="text"  data-conv-question="<a href='https://www.google.com/'>http://forget.php</a>" data-no-answer="true">  
+			</div>
+			<div data-conv-case="howToAccessPractice">
+				<input type="text" data-conv-question="Just visit" data-no-answer="true">
+				<input type="text"  data-conv-question="<a href='https://www.google.com/'>http://practice.php</a>" data-no-answer="true">
+			<!-- <input type="text" name="companyName" data-conv-question="Please, enter your company name"> --> 
+			</div>
+			<div data-conv-case="howToAccessExam">
+				<input type="text" data-conv-question="Just visit" data-no-answer="true">
+				<input type="text"  data-conv-question="<a href='https://www.google.com/'>http://exam.php</a>" data-no-answer="true">
+				<input type="text" data-conv-question="Login before exam" data-no-answer="true">
+			</div>
+			<div data-conv-case="contactUs">
+				<input type="text" data-conv-question="9876543210" data-no-answer="true">
+			</div>
+			<div data-conv-case="aboutUs">
+				<input type="text" data-conv-question="we are cool" data-no-answer="true">
+			</div>
+		</div>
+
+		<select data-conv-question="Do you need any more help ??">
+				<option value="yes" data-callback="rollback">Yes</option>
+				<option value="no" data-callback="restore">No</option>
+		</select> 
+
+		<!-- <input type="text" name="name" data-conv-question="Please, Enter your name">
+
+		<input type="text" data-conv-question="Hi {name}, <br> It's a pleasure to meet you." data-no-answer="true">
+
+		<input data-conv-question="Enter your e-mail" data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" name="email" required placeholder="What's your e-mail?"> -->
+
+		<!-- <select data-conv-question="Please Conform">
+			<option value="Yes">Conform</option>
+		</select> -->
+
+		</form>
+		</div>
+	</div>
+	<!-- ChatBot end -->
 
 
 	<!-- Contents -->
