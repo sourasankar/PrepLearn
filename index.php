@@ -29,10 +29,12 @@
 			margin: 0 70px 70px 0;
 			padding: 10px;
 			right: 0;
+			box-shadow: 4px 6px 5px 1px rgb(0 0 0 / 36%);
 			text-align: center;
 			position: fixed;
 			background-color: #f50057ab;
 			border-radius: 50%;
+			z-index:1000;
 			color:white;
 			cursor: pointer;
 		}
