@@ -13,8 +13,12 @@
 
 	//unset error msgs
 	$status=$emailError=$passError=null;
+	
+	
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+		if(!isset($_SESSION["otp"])){
 
 			//flag to check error
 			$error=0;
@@ -51,10 +55,11 @@
 					//if pass is matched
 					if($pass==$row["password"]){
 
-						//user now logged in
-						$_SESSION["email"]=$email;				
-						header("Location: index.php");
-						die();
+						//user will get otp in email
+						//rand(10000000,99999999)
+						$_SESSION["otp"]=123456;
+						$_SESSION["otpemail"]=$email;
+						
 						
 					}
 					//if pass not matched
@@ -72,7 +77,23 @@
 
 				//connection to db close
 				$conn->close();
-			}			
+			}	
+
+		}	
+		else{
+			if($_SESSION["otp"]==$_POST["otp"]){
+				$_SESSION["email"]=$_SESSION["otpemail"];		
+				unset($_SESSION["otp"]);
+				unset($_SESSION["otpemail"]);		
+				header("Location: index.php");
+				die();
+			}
+			//if otp not match
+			else{
+				$status="danger";
+				$msg='<i class="fas fa-exclamation-triangle"></i> OTP Do Not Match';
+			}
+		}			
 
 	}
 
@@ -105,7 +126,12 @@
 				<div class="card bg-light border-pink font-weight-bold shadow">
   					<div class="card-header bg-pink text-center text-white">LOGIN</div>
   					<div class="card-body">
-  						<form method="post" id="login_form" autocomplete="off" onsubmit="return myLogin()">
+  						<form method="post" id="login_form" autocomplete="off" <?php if(!isset($_SESSION["otp"])) echo 'onsubmit="return myLogin()"' ?>>
+						<?php 
+							if(!isset($_SESSION["otp"])){
+
+						?>
+						
 	  						<div class="form-group">
 								<label>Email</label>
 								<input type="email" class="form-control <?php echo $emailError; ?>" name="email" id="email" placeholder="Email" title="Enter Valid Email" onkeyup="checkemail()" required>
@@ -120,6 +146,18 @@
         							Must be between 6-20
       							</span>
 							</div>
+						<?php
+							}
+							else{
+						?>
+							<div class="form-group">
+								<label>OTP</label>
+								<input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" required>
+							</div>
+						<?php
+							}
+						?>
+
 							<button type="submit" id="submit_button" class="btn btn-pink form-control"><i class="fas fa-sign-in-alt"></i> Login</button>
 						</form>    					
   					</div>
