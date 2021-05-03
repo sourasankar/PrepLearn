@@ -16,6 +16,7 @@
         $option2[$count]=$row["option2"];
         $option3[$count]=$row["option3"];
         $option4[$count]=$row["option4"];
+        $explanation[$count]=$row["explanation"];
         $count++;
     }
 ?>
@@ -74,7 +75,7 @@
                 <a href="javascript:void(0)" style="color: #212529;font-weight: bold;font-size: 15px;" onclick="view_answer(<?php echo $questionId[$j]; ?>)">View Answer</a>
             </div>
             <div id="<?php echo $questionId[$j]; ?>" style="margin: 10px 0 0 40px;display: none;">                
-                <img src="solutions/<?php echo $questionId[$j]; ?>.png">
+                <img src="solutions/<?php echo $explanation[$j]; ?>.png">
             </div>
 		</div>
         <?php 
