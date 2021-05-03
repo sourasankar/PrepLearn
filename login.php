@@ -18,7 +18,7 @@
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-		if(!isset($_SESSION["otp"])){
+		if(!isset($_SESSION["loginotp"])){
 
 			//flag to check error
 			$error=0;
@@ -57,8 +57,8 @@
 
 						//user will get otp in email
 						//rand(10000000,99999999)
-						//mail("$email","OTP || PrepLearn","Hi,\nYour OTP to Logging into PrepLearn is : $_SESSION["otp"]");
-						$_SESSION["otp"]=123456;
+						//mail("$email","OTP || PrepLearn","Hi,\nYour OTP to Logging into PrepLearn is : $_SESSION["loginotp"]");
+						$_SESSION["loginotp"]=123456;
 						$_SESSION["otpemail"]=$email;
 						$status="success";
 						$msg='<i class="fas fa-check-circle"></i> OTP Has Been Sent. This May Take Upto 5 Minutes to Reach';
@@ -84,9 +84,9 @@
 
 		}	
 		else{
-			if($_SESSION["otp"]==$_POST["otp"]){
+			if($_SESSION["loginotp"]==$_POST["loginotp"]){
 				$_SESSION["email"]=$_SESSION["otpemail"];		
-				unset($_SESSION["otp"]);
+				unset($_SESSION["loginotp"]);
 				unset($_SESSION["otpemail"]);		
 				header("Location: index.php");
 				die();
@@ -129,9 +129,9 @@
 				<div class="card bg-light border-pink font-weight-bold shadow">
   					<div class="card-header bg-pink text-center text-white">LOGIN</div>
   					<div class="card-body">
-  						<form method="post" id="login_form" autocomplete="off" <?php if(!isset($_SESSION["otp"])) echo 'onsubmit="return myLogin()"' ?>>
+  						<form method="post" id="login_form" autocomplete="off" <?php if(!isset($_SESSION["loginotp"])) echo 'onsubmit="return myLogin()"' ?>>
 						<?php 
-							if(!isset($_SESSION["otp"])){
+							if(!isset($_SESSION["loginotp"])){
 
 						?>
 						
@@ -155,13 +155,22 @@
 						?>
 							<div class="form-group">
 								<label>OTP</label>
-								<input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" required>
+								<input type="text" class="form-control" name="loginotp" id="loginotp" placeholder="OTP" required>
 							</div>
 						<?php
 							}
 						?>
 
-							<button type="submit" id="submit_button" class="btn btn-pink form-control"><i class="fas fa-sign-in-alt"></i> Login</button>
+							<button type="submit" id="submit_button" class="btn btn-pink form-control">
+							<?php 
+								if(isset($_SESSION["loginotp"])){
+									echo 'Submit <i class="fas fa-sign-in-alt"></i>';
+								}
+								else{
+									echo '<i class="fas fa-sign-in-alt"></i> Login';
+								}
+							?>							
+							</button>
 						</form>    					
   					</div>
   					<div class="card-footer">

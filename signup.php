@@ -14,6 +14,11 @@
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
+		//connection to db
+		require "php/conn.php";
+
+		if(!isset($_SESSION["signupotp"])){
+
 			//flag to check error
 			$error=0;
 
@@ -49,9 +54,6 @@
 			//If no error
 			if ($error==0) {
 
-				//connection to db
-				require "php/conn.php";
-
 				//encrypting password
 				$pass=md5($_POST["pass"]);
 
@@ -68,23 +70,64 @@
 					$status="danger";
 					$msg='<i class="fas fa-exclamation-triangle"></i> The Account Already Exist';
 				}
-
-				//Iserting into database
 				else{
-					$sql = "INSERT INTO credentials(`first_name`,`last_name`,`email`,`password`,`phone`) VALUES ('$fname','$lname','$email','$pass','$phone')";
-					if($conn->query($sql)){
-						$status="success";
-						$msg='<i class="fas fa-check-circle"></i> Account Created Successfully. <a href="login.php">Login</a>';
-					}
-					else{
-						$status="danger";
-						$msg='<i class="fas fa-exclamation-triangle"></i> Account Creation Failed';
-					}
+
+					//user will get otp in email
+					//rand(10000000,99999999)
+					//mail("$email","OTP || PrepLearn","Hi,\nYour OTP to Create Account into PrepLearn is : $_SESSION["signupotp"]");
+					$_SESSION["signupotp"]=123456;
+					$_SESSION["otpemail"]=$email;
+					$_SESSION["fname"]=$fname;
+					$_SESSION["lname"]=$lname;
+					$_SESSION["pass"]=$pass;
+					$_SESSION["phone"]=$phone;
+					$status="success";
+					$msg='<i class="fas fa-check-circle"></i> OTP Has Been Sent. This May Take Upto 5 Minutes to Reach';
+
+				}
+											
+			}
+
+		}
+		else{
+			if($_SESSION["signupotp"]==$_POST["signupotp"]){
+						
+						
+				//Iserting into database
+				$email=$_SESSION["otpemail"];
+				$fname=$_SESSION["fname"];
+				$lname=$_SESSION["lname"];
+				$pass=$_SESSION["pass"];
+				$phone=$_SESSION["phone"];
+				
+				$sql = "INSERT INTO credentials(`first_name`,`last_name`,`email`,`password`,`phone`) VALUES ('$fname','$lname','$email','$pass','$phone')";
+				if($conn->query($sql)){
+					$status="success";
+					$msg='<i class="fas fa-check-circle"></i> Account Created Successfully. <a href="login.php">Login</a>';
+				}
+				else{
+					$status="danger";
+					$msg='<i class="fas fa-exclamation-triangle"></i> Account Creation Failed';
 				}
 
-				//connection to db close
-				$conn->close();				
-			}		
+				unset($_SESSION["signupotp"]);
+				unset($_SESSION["otpemail"]);
+				unset($_SESSION["fname"]);
+				unset($_SESSION["lname"]);
+				unset($_SESSION["pass"]);
+				unset($_SESSION["phone"]);
+
+			}
+			//if otp not match
+			else{
+				$status="danger";
+				$msg='<i class="fas fa-exclamation-triangle"></i> OTP Do Not Match';
+			}
+		}
+
+		//connection to db close
+		$conn->close();	
+					
 	}
 
 ?>
@@ -116,7 +159,12 @@
 				<div class="card bg-light border-pink font-weight-bold shadow">
   					<div class="card-header bg-pink text-center text-white">REGISTER</div>
   					<div class="card-body">
-  						<form method="post" id="signup_form" autocomplete="off" onsubmit="return mySignup()">
+  						<form method="post" id="signup_form" autocomplete="off" <?php if(!isset($_SESSION["signupotp"])) echo 'onsubmit="return mySignup()"' ?>>
+						
+						<?php 
+							if(!isset($_SESSION["signupotp"])){
+
+						?>
 	  						<div class="form-group">
 								<label>First Name</label>
 								<input type="text" class="form-control <?php echo $fnameError; ?>" id="fname" name="fname" placeholder="First Name" onkeyup="checkfName()" required>
@@ -152,7 +200,27 @@
         							Must be between 6-20
       							</span>
 							</div>
-							<button type="submit" id="submit_button" class="btn btn-pink form-control"><i class="fas fa-database"></i> Sign Up</button>						
+						<?php
+							}
+							else{
+						?>
+							<div class="form-group">
+								<label>OTP</label>
+								<input type="text" class="form-control" name="signupotp" id="signupotp" placeholder="OTP" required>
+							</div>
+						<?php
+							}
+						?>
+							<button type="submit" id="submit_button" class="btn btn-pink form-control"> 
+							<?php 
+							if(isset($_SESSION["signupotp"])){
+								echo 'Submit <i class="fas fa-sign-in-alt"></i>';
+							}
+							else{
+								echo '<i class="fas fa-database"></i> Sign Up';
+							}
+							?>							
+							</button>						
     					</form>
   					</div>
   					<div class="card-footer">
