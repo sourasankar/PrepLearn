@@ -57,8 +57,11 @@
 
 						//user will get otp in email
 						//rand(10000000,99999999)
+						//mail("$email","OTP || PrepLearn","Hi,\nYour OTP to Logging into PrepLearn is : $_SESSION["otp"]");
 						$_SESSION["otp"]=123456;
 						$_SESSION["otpemail"]=$email;
+						$status="success";
+						$msg='<i class="fas fa-check-circle"></i> OTP Has Been Sent. This May Take Upto 5 Minutes to Reach';
 						
 						
 					}
