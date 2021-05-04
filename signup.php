@@ -1,14 +1,142 @@
+<?php 
+	session_start();
+
+	//Checking if user is already logged in
+	if(isset($_SESSION["email"])){
+
+		//User already logged in redirects to home page
+		header("Location: index.php");
+		die();
+	}
+
+	//unset error msgs
+	$status=$fnameError=$lnameError=$phoneError=$emailError=$passError=null;
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+		//connection to db
+		require "php/conn.php";
+
+		if(!isset($_SESSION["signupotp"])){
+
+			//flag to check error
+			$error=0;
+
+			//Data comes from signup form
+			$fname=strtolower($_POST["fname"]);
+			$lname=strtolower($_POST["lname"]);
+			$phone=$_POST["phone"];
+			$email=strtolower($_POST["email"]);
+			$pass=$_POST["pass"];
+
+			//PHP Validations
+			if (!preg_match("/^[A-Za-z]+(\s[A-Za-z]+)*$/",$fname) || $fname==""){
+				$fnameError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^[A-Za-z]+$/",$lname) || $lname==""){
+				$lnameError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^\d{10}$/",$phone) || $phone==""){
+				$phoneError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^\w+(\.\w+)*@\w+\.[A-Za-z]+$/",$email) || $email==""){
+				$emailError="is-invalid";
+	  			$error=1;
+			}
+			if (!preg_match("/^.{6,20}$/",$pass) || $pass==""){
+				$passError="is-invalid";
+	  			$error=1;
+			}
+
+			//If no error
+			if ($error==0) {
+
+				//encrypting password
+				$pass=md5($_POST["pass"]);
+
+				//Check for email already exist
+				$sql = "SELECT * FROM credentials WHERE email='$email'";
+				$result = $conn->query($sql);				
+				if($result->num_rows!=0){
+					$flag=1;
+				}
+
+				//if account already exist
+				if(isset($flag)){
+					$flag=null;
+					$status="danger";
+					$msg='<i class="fas fa-exclamation-triangle"></i> The Account Already Exist';
+				}
+				else{
+
+					//user will get otp in email
+					//rand(10000000,99999999)
+					//mail("$email","OTP || PrepLearn","Hi,\nYour OTP to Create Account into PrepLearn is : $_SESSION["signupotp"]");
+					$_SESSION["signupotp"]=123456;
+					$_SESSION["otpemail"]=$email;
+					$_SESSION["fname"]=$fname;
+					$_SESSION["lname"]=$lname;
+					$_SESSION["pass"]=$pass;
+					$_SESSION["phone"]=$phone;
+					$status="success";
+					$msg='<i class="fas fa-check-circle"></i> OTP Has Been Sent. This May Take Upto 5 Minutes to Reach';
+
+				}
+											
+			}
+
+		}
+		else{
+			if($_SESSION["signupotp"]==$_POST["signupotp"]){
+						
+						
+				//Iserting into database
+				$email=$_SESSION["otpemail"];
+				$fname=$_SESSION["fname"];
+				$lname=$_SESSION["lname"];
+				$pass=$_SESSION["pass"];
+				$phone=$_SESSION["phone"];
+				
+				$sql = "INSERT INTO credentials(`first_name`,`last_name`,`email`,`password`,`phone`) VALUES ('$fname','$lname','$email','$pass','$phone')";
+				if($conn->query($sql)){
+					$status="success";
+					$msg='<i class="fas fa-check-circle"></i> Account Created Successfully. <a href="login.php">Login</a>';
+				}
+				else{
+					$status="danger";
+					$msg='<i class="fas fa-exclamation-triangle"></i> Account Creation Failed';
+				}
+
+				unset($_SESSION["signupotp"]);
+				unset($_SESSION["otpemail"]);
+				unset($_SESSION["fname"]);
+				unset($_SESSION["lname"]);
+				unset($_SESSION["pass"]);
+				unset($_SESSION["phone"]);
+
+			}
+			//if otp not match
+			else{
+				$status="danger";
+				$msg='<i class="fas fa-exclamation-triangle"></i> OTP Do Not Match';
+			}
+		}
+
+		//connection to db close
+		$conn->close();	
+					
+	}
+
+?>
+
+
 <html>
 <head>
 	<title>Signup</title>
-	<!-- <?php require "php/head.php"; ?> -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css?<?php echo $ver; ?>"> 
-	<link rel="shortcut icon" href="logo/logo.png"/>
-	<link rel="stylesheet" href="fontawesome/css/all.min.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<?php require "php/head.php"; ?>
 	<style>
 		body{
 			background: url(background/imgsignup.jpg) fixed; 
@@ -19,75 +147,9 @@
 </head>
 <body>
 
-
-	<!-- <?php  require "php/nav.php"; ?> -->
-
 	<!-- Nav Bar -->
-	<script>
-		function myMenu(){
-			if (document.getElementById("nav-menu").style.width=="0px") {
-				document.getElementById("nav-menu").style.width="60%";
-			}
-			else{
-				document.getElementById("nav-menu").style.width="0px";
-			}		
-		}
-	</script>
-	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="index.html" style="font-weight: bold;"><img src="logo/logo.png" width="30" height="30" class="d-inline-block align-top"></i> PrepLearn</a>
-			<button class="navbar-toggler" type="button" onclick="myMenu()" onblur='document.getElementById("nav-menu").style.width="0px"'>
-			<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse">
-			    <ul class="navbar-nav ml-auto">
-			    	<!-- <?php if (!isset($_SESSION["email"])) { ?> -->
-			      	<li class="nav-item">
-			        	<a class="nav-link" href="signup.html"><i class="fas fa-user"></i> Sign Up</a>
-			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-			      	</li>
-			      	<!-- <?php }  -->
-					<!-- else{ ?>
-					<li class="nav-item dropdown">
-					    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?php echo $_SESSION["email"] ?>
-					    </a>
-					    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					        <a class="dropdown-item" href="home.php?p=1"><i class="fas fa-history"></i> Past Plans</a>
-					        <a class="dropdown-item" href="changepass.php"><i class="fas fa-user-cog"></i> Change Password</a>
-					        <a class="dropdown-item" href="php/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-					    </div>
-					</li>
-					<?php } ?> -->
-			    </ul>
-			</div>	  	
-		</div>
-	</nav>
-	<div class="nav-menu" id="nav-menu" style="width: 0px;">
-			    	
-		<!-- <?php if (!isset($_SESSION["email"])) { ?> -->
 
-		<a class="nav-link menu-icon" href="index.html">
-			<div style="text-align: center;color: white;font-size: 30px;"><i class="fas fa-home"></i></div>
-		</a>	      			
-		<a class="nav-link" href="signup.html"><i class="fas fa-user"></i> Sign Up</a>
-		<a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-					
-		<!-- <?php } 
-		else{ ?>
-								
-		<a class="nav-link menu-icon" href="home.php" style="background-color: #243d51;">
-			<div style="text-align: center;color: white;font-size: 30px;"><i class="fas fa-user"></i></div>
-			<?php echo $_SESSION["email"] ?>
-		</a>
-		<a class="nav-link" href="home.php?p=1"><i class="fas fa-history"></i> Past Plans</a>
-		<a class="nav-link" href="changepass.php"><i class="fas fa-user-cog"></i> Change Password</a>
-		<a class="nav-link" href="php/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-		
-		<?php } ?> -->
-			    	
-	</div>
+	<?php  require "php/nav.php"; ?> 
 
 	<!--------SIGNUP FORM------->
 
@@ -97,7 +159,12 @@
 				<div class="card bg-light border-pink font-weight-bold shadow">
   					<div class="card-header bg-pink text-center text-white">REGISTER</div>
   					<div class="card-body">
-  						<form method="post" id="signup_form" autocomplete="off" onsubmit="return mySignup()">
+  						<form method="post" id="signup_form" autocomplete="off" <?php if(!isset($_SESSION["signupotp"])) echo 'onsubmit="return mySignup()"' ?>>
+						
+						<?php 
+							if(!isset($_SESSION["signupotp"])){
+
+						?>
 	  						<div class="form-group">
 								<label>First Name</label>
 								<input type="text" class="form-control <?php echo $fnameError; ?>" id="fname" name="fname" placeholder="First Name" onkeyup="checkfName()" required>
@@ -133,29 +200,46 @@
         							Must be between 6-20
       							</span>
 							</div>
-							<button type="submit" id="submit_button" class="btn btn-pink form-control"><i class="fas fa-database"></i> Sign Up</button>						
+						<?php
+							}
+							else{
+						?>
+							<div class="form-group">
+								<label>OTP</label>
+								<input type="text" class="form-control" name="signupotp" id="signupotp" placeholder="OTP" required>
+							</div>
+						<?php
+							}
+						?>
+							<button type="submit" id="submit_button" class="btn btn-pink form-control"> 
+							<?php 
+							if(isset($_SESSION["signupotp"])){
+								echo 'Submit <i class="fas fa-sign-in-alt"></i>';
+							}
+							else{
+								echo '<i class="fas fa-database"></i> Sign Up';
+							}
+							?>							
+							</button>						
     					</form>
   					</div>
   					<div class="card-footer">
-  						<!-- <?php 
+  					<?php 
   						if(isset($status)) echo '<div class="alert alert-'.$status.' text-center" style="margin: 10px auto; padding: 1px 20px;" role="alert">'.$msg.'</div>';
   						else
-  							echo ' -->Have an account? <a href="login.html" style="color: #f50057;">Login</a><!-- '; -->
+  							echo 'Have an account? <a href="login.html" style="color: #f50057;">Login</a>'; 
 
-  						 <!-- ?>  --> 						
+  					?>  						
   					</div>
 				</div>
 			</div>			
 		</div>		
 	</div>
 
-
-	<!-- <?php  require "php/footer.php"; ?> -->
 	<!-- footer -->
-	<footer>
-		Copyright <i class="far fa-copyright"></i> PrepLearn. All Rights Reserved
-	</footer>
 
+	<?php  require "php/footer.php"; ?> 
+	
 
 	<!-------JAVASCRIPT FOR IDs--------> 
 
