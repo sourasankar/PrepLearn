@@ -87,7 +87,7 @@
 		<input type="text" data-conv-question="Hello!!" data-no-answer="true"> 
 
       <select data-callback="storeState" data-conv-question="How can I help you ??" name="category">
-        <option value="forgotPassword">Forget Password</option>
+        <option value="forgotPassword">Forgot Password</option>
         <option value="howToAccessPractice">How to access Practice</option>
         <option value="howToAccessExam">How to access Exam</option>
         <option value="contactUs">Contact Us</option>
@@ -96,17 +96,15 @@
 
       <div data-conv-fork="category">
         <div data-conv-case="forgotPassword">
-        	<input type="text"  data-conv-question="<a href='https://www.google.com/'>http://forget.php</a>" data-no-answer="true">  
+        	<input type="text"  data-conv-question="<a href='http://preplearn.xyz/forgotpass.php'>http://preplearn.xyz/forgotpass.php</a>" data-no-answer="true">  
         </div>
         <div data-conv-case="howToAccessPractice">
-        	<input type="text" data-conv-question="Just visit" data-no-answer="true">
-        	<input type="text"  data-conv-question="<a href='https://www.google.com/'>http://practice.php</a>" data-no-answer="true">
-          <!-- <input type="text" name="companyName" data-conv-question="Please, enter your company name"> --> 
+			<input type="text" data-conv-question="Goto home page" data-no-answer="true">	
+        	<input type="text" data-conv-question="Just click on the any sections to start your practice" data-no-answer="true">
         </div>
         <div data-conv-case="howToAccessExam">
-        	<input type="text" data-conv-question="Just visit" data-no-answer="true">
-        	<input type="text"  data-conv-question="<a href='https://www.google.com/'>http://exam.php</a>" data-no-answer="true">
-        	<input type="text" data-conv-question="Login before exam" data-no-answer="true">
+        	<input type="text" data-conv-question="First Login to your Account" data-no-answer="true">
+        	<input type="text"  data-conv-question="Then goto home page and click on the Take Exam button" data-no-answer="true">
         </div>
         <div data-conv-case="contactUs">
         	<input type="text" data-conv-question="9876543210" data-no-answer="true">
