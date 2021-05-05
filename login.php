@@ -57,7 +57,10 @@
 
 						//user will get otp in email
 						//rand(10000000,99999999)
-						//mail("$email","OTP || PrepLearn","Hi,\nYour OTP to Logging into PrepLearn is : $_SESSION["loginotp"]");
+						//$headers = "From: PrepLearn <no_reply@preplearn.xyz>\r\n";
+						//$headers .= "Reply-To: no_reply@preplearn.xyz\r\n";
+						//$headers .= "Return-Path: no_reply@preplearn.xyz\r\n";
+						//mail($email,"Login OTP || PrepLearn","Hi,\nYour OTP to Logging into PrepLearn is : $_SESSION["loginotp"]",$headers);
 						$_SESSION["loginotp"]=123456;
 						$_SESSION["otpemail"]=$email;
 						$status="success";
