@@ -158,7 +158,7 @@
 						?>
 							<div class="form-group">
 								<label>OTP</label>
-								<input type="text" class="form-control" name="loginotp" id="loginotp" placeholder="OTP" required>
+								<input type="password" class="form-control" name="loginotp" id="loginotp" placeholder="OTP" required>
 							</div>
 						<?php
 							}

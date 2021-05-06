@@ -209,7 +209,7 @@
 						?>
 							<div class="form-group">
 								<label>OTP</label>
-								<input type="text" class="form-control" name="signupotp" id="signupotp" placeholder="OTP" required>
+								<input type="password" class="form-control" name="signupotp" id="signupotp" placeholder="OTP" required>
 							</div>
 						<?php
 							}
