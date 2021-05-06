@@ -11,8 +11,9 @@
 
 	//connection to db
 	require "php/conn.php";	
+    $email=$_SESSION["email"];
 
-	$sql = "SELECT * FROM preplearn_exam_history";
+	$sql = "SELECT * FROM preplearn_exam_history WHERE email='$email'";
 	$result = $conn->query($sql);	
 
 ?>

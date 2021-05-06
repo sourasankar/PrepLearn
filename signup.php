@@ -85,7 +85,7 @@
 					$_SESSION["pass"]=$pass;
 					$_SESSION["phone"]=$phone;
 					$status="success";
-					$msg='<i class="fas fa-check-circle"></i> OTP Has Been Sent. This May Take Upto 5 Minutes to Reach';
+					$msg='<i class="fas fa-check-circle"></i> OTP Has Been Sent to Your Email. This May Take Upto 5 Minutes to Reach';
 
 				}
 											
