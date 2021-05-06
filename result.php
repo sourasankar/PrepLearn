@@ -106,7 +106,7 @@
                 <div style="color: #212529;font-weight: bold;font-size: 15px;">Solution Explanation:</div>
             </div>
             <div style="margin: 10px 0 0 40px;">                
-                <img src="solutions/<?php echo $row["explanation"]; ?>.png">
+                <img src="solutions/<?php echo $row["explanation"]; ?>.PNG">
             </div>
 		</div>
         <?php 
