@@ -119,16 +119,8 @@
 	        <option value="no" data-callback="restore">No</option>
 	  </select> 
 
-      <!-- <input type="text" data-conv-question="Bye" data-no-answer="true">
-	  <input type="text" data-conv-question="Have a great day" data-no-answer="true"> -->
-
-      <!-- <input type="text" data-conv-question="Hi {name}, <br> It's a pleasure to meet you." data-no-answer="true">
-
-      <input data-conv-question="Enter your e-mail" data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" name="email" required placeholder="What's your e-mail?"> -->
-
-      <!-- <select data-conv-question="Please Conform">
-        <option value="Yes">Conform</option>
-      </select> -->
+      <input type="text" data-conv-question="Bye" data-no-answer="true">
+	  <input type="text" data-conv-question="Have a great day" data-no-answer="true">
 
   	</form>
 	</div>
