@@ -56,7 +56,7 @@
 					if($pass==$row["password"]){
 
 						//user will get otp in email
-						//rand(10000000,99999999)
+						//$_SESSION["loginotp"]=rand(10000000,99999999);
 						//$headers = "From: PrepLearn <no_reply@preplearn.xyz>\r\n";
 						//$headers .= "Reply-To: no_reply@preplearn.xyz\r\n";
 						//$headers .= "Return-Path: no_reply@preplearn.xyz\r\n";

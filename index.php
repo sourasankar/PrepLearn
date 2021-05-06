@@ -107,10 +107,10 @@
         	<input type="text"  data-conv-question="Then goto home page and click on the Take Exam button" data-no-answer="true">
         </div>
         <div data-conv-case="contactUs">
-        	<input type="text" data-conv-question="9876543210" data-no-answer="true">
+        	<input type="text" data-conv-question="admin@preplearn.xyz" data-no-answer="true">
         </div>
         <div data-conv-case="aboutUs">
-        	<input type="text" data-conv-question="we are cool" data-no-answer="true">
+        	<input type="text" data-conv-question="we are final year student at Jis College of Engineering of CSE Branch" data-no-answer="true">
         </div>
       </div>
 
