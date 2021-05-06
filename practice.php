@@ -5,7 +5,7 @@
 	require "php/conn.php";
     $sub_category_id = $_GET["id"];
 
-	$sql = "SELECT * FROM questions WHERE sub_category_id='$sub_category_id'";
+	$sql = "SELECT * FROM preplearn_questions WHERE sub_category_id='$sub_category_id'";
 	$result = $conn->query($sql);
     $count=0;
     while($row = $result->fetch_assoc()){
@@ -45,7 +45,7 @@
     <div class="container" style="margin-bottom: 80px;">
         <div class="indextext" style="margin-top: 70px;margin-bottom: 50px;text-align: center;">
             <?php 
-                $sql2 = "SELECT * FROM question_sub_category WHERE sub_category_id='$sub_category_id'";
+                $sql2 = "SELECT * FROM preplearn_question_sub_category WHERE sub_category_id='$sub_category_id'";
                 $result2 = $conn->query($sql2);
                 $row2 = $result2->fetch_assoc();
             ?>

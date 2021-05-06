@@ -12,7 +12,7 @@
 	//connection to db
 	require "php/conn.php";	
 
-	$sql = "SELECT * FROM exam_history";
+	$sql = "SELECT * FROM preplearn_exam_history";
 	$result = $conn->query($sql);	
 
 ?>

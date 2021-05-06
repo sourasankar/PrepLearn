@@ -13,7 +13,7 @@
         require "php/conn.php";
         
 
-        $sql = "SELECT * FROM questions WHERE sub_category_id IN (";
+        $sql = "SELECT * FROM preplearn_questions WHERE sub_category_id IN (";
 
         foreach($_POST["subcategory"] as $sub_category_id){
             $sql.="$sub_category_id,";

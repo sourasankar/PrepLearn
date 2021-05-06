@@ -17,7 +17,7 @@
         //connection to db
 	    require "php/conn.php";
 
-        $sql = "SELECT * FROM questions WHERE question_id IN (";
+        $sql = "SELECT * FROM preplearn_questions WHERE question_id IN (";
 
         foreach($answers as $questionId => $ans){
             $sql.="$questionId,";
@@ -114,7 +114,7 @@
             $i++;                
             }
             $i--;
-            $sql = "INSERT INTO exam_history(`email`,`date`,`correct`,`wrong`,`not_attempted`,`count_questions`) VALUES ('$email','$date','$countCorrectAnswer','$countWrongAnswer','$countNotAttempted','$i')";
+            $sql = "INSERT INTO preplearn_exam_history(`email`,`date`,`correct`,`wrong`,`not_attempted`,`count_questions`) VALUES ('$email','$date','$countCorrectAnswer','$countWrongAnswer','$countNotAttempted','$i')";
             $conn->query($sql);
 
             //connection to db close

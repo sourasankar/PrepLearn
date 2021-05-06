@@ -58,7 +58,7 @@
 				$pass=md5($_POST["pass"]);
 
 				//Check for email already exist
-				$sql = "SELECT * FROM credentials WHERE email='$email'";
+				$sql = "SELECT * FROM preplearn_credentials WHERE email='$email'";
 				$result = $conn->query($sql);				
 				if($result->num_rows!=0){
 					$flag=1;
@@ -103,7 +103,7 @@
 				$pass=$_SESSION["pass"];
 				$phone=$_SESSION["phone"];
 				
-				$sql = "INSERT INTO credentials(`first_name`,`last_name`,`email`,`password`,`phone`) VALUES ('$fname','$lname','$email','$pass','$phone')";
+				$sql = "INSERT INTO preplearn_credentials(`first_name`,`last_name`,`email`,`password`,`phone`) VALUES ('$fname','$lname','$email','$pass','$phone')";
 				if($conn->query($sql)){
 					$status="success";
 					$msg='<i class="fas fa-check-circle"></i> Account Created Successfully. <a href="login.php">Login</a>';
@@ -230,7 +230,7 @@
   					<?php 
   						if(isset($status)) echo '<div class="alert alert-'.$status.' text-center" style="margin: 10px auto; padding: 1px 20px;" role="alert">'.$msg.'</div>';
   						else
-  							echo 'Have an account? <a href="login.html" style="color: #f50057;">Login</a>'; 
+  							echo 'Have an account? <a href="login.php" style="color: #f50057;">Login</a>'; 
 
   					?>  						
   					</div>

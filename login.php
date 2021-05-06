@@ -47,7 +47,7 @@
 				$pass=md5($_POST["pass"]);
 
 				//getting password for that user
-				$sql = "SELECT password FROM credentials WHERE email='$email'";
+				$sql = "SELECT password FROM preplearn_credentials WHERE email='$email'";
 				$result = $conn->query($sql);
 				if($result->num_rows!=0){
 					$row = $result->fetch_assoc();
@@ -180,7 +180,8 @@
   						<?php 
   						if(isset($status)) echo '<div class="alert alert-'.$status.' text-center" style="margin: 10px auto; padding: 1px 20px;" role="alert">'.$msg.'</div>';
   						else 
-  							 echo "Don't have an account? <a href='signup.html' style='color: #f50057;'>Sign Up</a>" ; 
+  							 echo "Don't have an account? <a href='signup.php' style='color: #f50057;'>Sign Up</a><br>
+							   Forgot your password? <a href='forgotpass.php' style='color: #f50057;'>Forgot</a>" ; 
 
   						?> 
   						

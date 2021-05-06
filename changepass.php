@@ -58,14 +58,14 @@
 					$oldPass=md5($oldPass);
 
 					//getting password for that user
-					$sql = "SELECT password FROM credentials WHERE email='$email'";
+					$sql = "SELECT password FROM preplearn_credentials WHERE email='$email'";
 					$result = $conn->query($sql);
 					$row = $result->fetch_assoc();
 
 					//if pass is matched
 					if($oldPass==$row["password"]){
 						$newPass=md5($newPass);
-						$sql = "UPDATE credentials SET password='$newPass' WHERE email='$email'";
+						$sql = "UPDATE preplearn_credentials SET password='$newPass' WHERE email='$email'";
 						$conn->query($sql);
 						$status="success";
 						$msg='<i class="fas fa-check-circle"></i> Password Successfully Changed';

@@ -12,7 +12,7 @@
 	//connection to db
 	require "php/conn.php";
 
-	$sql = "SELECT * FROM question_category";
+	$sql = "SELECT * FROM preplearn_question_category";
 	$result = $conn->query($sql);
 
 ?>
@@ -56,7 +56,7 @@
 
                             <div class="row">
 							<?php 
-								$sql2 = "SELECT * FROM question_sub_category WHERE category_id=".$row["category_id"];
+								$sql2 = "SELECT * FROM preplearn_question_sub_category WHERE category_id=".$row["category_id"];
 								$result2 = $conn->query($sql2);
 								$j=1;
 								while($row2 = $result2->fetch_assoc()){
