@@ -52,7 +52,15 @@
             <u><?php echo $row2["sub_category_name"]; ?></u>
 		</div>
 
-        <?php             
+        <?php
+            if($count==0){
+        ?>
+        <div class="questionbox" style="text-align: center;font-weight: 800;font-size: xx-large;">
+                COMING SOON
+        </div>
+        <?php
+            }
+            else{         
 			for($j=0;$j<$count;$j++){
 		?>		
         <div class="questionbox">
@@ -79,7 +87,7 @@
             </div>
 		</div>
         <?php 
-                
+            }  
             }
             
             //connection to db close
